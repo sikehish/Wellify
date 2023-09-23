@@ -11,7 +11,7 @@ const Navbar = () => {
     <nav className="bg-primary text-background p-4">
       <div className="container mx-auto flex justify-between items-center">
         <Link to="/" className="text-2xl font-bold">Wellify</Link>
-        <ul className="flex justify-around space-x-8">
+        <ul className="flex justify-around space-x-8 items-center">
           {currentUser ? (
             <>
               <li><Link to="/">Feed</Link></li>
