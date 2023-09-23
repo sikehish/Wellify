@@ -41,10 +41,11 @@ const Dashboard = () => {
         <table className="min-w-full border-collapse overflow-hidden bg-white rounded-lg shadow-md">
           <thead className="bg-gray-800 text-white">
             <tr>
-              <th className="py-3 px-6 text-left">Profile</th>
+              <th className="py-3 px-6 text-left">PFP</th>
               <th className="py-3 px-6 text-left">Name</th>
               <th className="py-3 px-6 text-left">Location</th>
               <th className="py-3 px-6 text-left">Description</th>
+              <th className="py-3 px-6 text-left">License No.</th>
               <th className="py-3 px-6 text-left">Gender</th>
               <th className="py-3 px-6 text-left">Email</th>
               <th className="py-3 px-6 text-left">Status</th>
@@ -66,6 +67,7 @@ const Dashboard = () => {
                 <td className="py-3 px-6">{professional.name}</td>
                 <td className="py-3 px-6">{professional.location}</td>
                 <td className="py-3 px-6">{professional.description}</td>
+                <td className="py-3 px-6">{professional.licenseNumber}</td>
                 <td className="py-3 px-6">{professional.gender}</td>
                 <td className="py-3 px-6">{professional.email}</td>
                 <td className="py-3 px-6">
