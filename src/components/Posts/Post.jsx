@@ -6,11 +6,13 @@ import {FcLikePlaceholder} from 'react-icons/fc'
 import {FcLike} from 'react-icons/fc'
 import {MdOutlineAddComment} from 'react-icons/md'
 import {MdOutlineComment} from 'react-icons/md'
+import {AiOutlineCheck} from 'react-icons/ai'
+import {AiOutlinePlus} from 'react-icons/ai'
 
 const Post = ({ post, user }) => {
   const [newComment, setNewComment] = useState('');
   const [showComments, setShowComments] = useState(false);
-  console.log(post)
+  const userId=user.uid
 
   // Handle adding a new comment
   const handleAddComment = async () => {
@@ -63,10 +65,50 @@ const Post = ({ post, user }) => {
       await updateDoc(postRef, { likes: updatedLikes });
     }
   };
+  
+  const handleFollowPost = async () => {
+    console.log(userId)
+    // const profCol = collection(db, 'professionals');
+    console.log(post.userId, user.uid)
+    const profRef = doc(db, 'professionals', post.userId);
+    const docSnap1 = await getDoc(profRef);
+    const prof=docSnap1.data();
+
+
+    // const usersCol = collection(db, 'users');
+    const usersRef = doc(db, 'users',user.uid);
+    const docSnap2 = await getDoc(usersRef);
+    const user1=docSnap2.data();
+
+    console.log(user1,prof)
+
+    console.log(post)
+    if (user1?.following?.includes(post.userId)) {
+      // Remove user's UID from the likes array
+      const updatedFollowing = user1?.following.filter((uid) => uid !== post.userId);
+      const updatedFollowers = prof?.followers.filter((uid) => uid !== user.uid);
+      await updateDoc(usersRef, { following: updatedFollowing });
+      await updateDoc(profRef, { followers: updatedFollowers });
+    } else {
+      // Add user's UID to the likes array
+    //   await updateDoc(postRef, {
+    //     comments: arrayUnion(newCommentDoc)
+    // });  
+      // const updatedFollowing = user1?.following ? [...(user1?.following), post.userId ] : [post.userId];
+      // const updatedFollowers =prof?.followers ? [...(prof?.followers), user.uid ] :[user.uid]
+      // console.log(user.uid, updatedFollowers, updatedFollowing)
+      // await updateDoc(usersRef, { following: updatedFollowing });
+      // await updateDoc(profRef, { followers: updatedFollowers });
+      await updateDoc(usersRef,{ following: arrayUnion(post.userId)});
+      await updateDoc(profRef,{ followers: arrayUnion(user.uid)});
+    }
+  };
 
   return (
     <div className="border rounded-lg mb-5 mt-5 md:w-1/2 mx-auto bg-white shadow-lg">
-      <div className='bg-blue-100 p-3 flex'>
+      <div className='flex justify-between bg-blue-100'>
+        
+      <div className=' p-3 flex'>
         <img
               src={post.profilePicture}
               alt="Profile"
@@ -77,6 +119,11 @@ const Post = ({ post, user }) => {
         <span className="text-xs text-gray-500">{(new Date(post.timestamp.toDate())).toDateString()}</span>
               </div>
         </div>
+        {post.userId!=user.uid && <button className='flex items-center text-md mr-5' type='button' onClick={handleFollowPost}>
+          {post.isFollowing? <span className='px-1'>Following </span>: <span className='px-1'>Follow</span> }
+          {post.isFollowing? <AiOutlineCheck /> :  <AiOutlinePlus />}
+        </button>}
+              </div>
       <div>
 
       <p className="mb-2 pb-10 pt-4 px-2">{post.text}</p>
@@ -122,7 +169,8 @@ const Post = ({ post, user }) => {
                 alt="Profile"
                 className="h-5 w-5 rounded-full object-cover my-auto"
                 /> */}
-                <p>{comment.name}</p>        
+                <p>{comment.name}</p>    
+
           <span className="text-xs text-gray-500">{(new Date(post.timestamp.toDate())).toDateString()}</span>
                 <div className='ml-2 mt-2'>
                 <p>{comment.text}</p>        
