@@ -5,7 +5,7 @@ const LandingPage = () => {
   return (
     <div className="bg-gradient-to-b from-blue-500 to-blue-300 flex flex-col">
       <main className="flex-grow">
-        <section className="container mx-auto p-16 text-center text-white">
+        <section className="container mx-auto p-40 text-center text-white">
           <h1 className="text-4xl font-extrabold mb-4">Connect with Mental Health Professionals</h1>
           <p className="text-lg mb-8">
             Discover a supportive community of mental health professionals and resources for your well-being.
@@ -17,7 +17,7 @@ const LandingPage = () => {
         <section id="features" className="bg-white py-12">
           <div className="container mx-auto text-center">
             <h2 className="text-3xl font-extrabold mb-8">Key Features</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:gap-y-20 lg:p-16 lg:gap-x-40">
               <div className="p-4 rounded-lg shadow-lg">
                 <h3 className="text-xl font-semibold mb-2">Find Professionals</h3>
                 <p className="text-gray-700">
