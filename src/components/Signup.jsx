@@ -74,7 +74,7 @@ const Signup = () => {
         location,
         description,
         gender: selectedGender,
-        verified: false
+        verified: false,
       };
       await addProfessionalToFirestore(uid, userData);
       toast.success('Signed up successfully!');

@@ -3,57 +3,66 @@ import React from 'react';
 
 const LandingPage = () => {
   return (
-    <div className="bg-blue-100 min-h-screen flex flex-col justify-center items-center">
-      <header className="bg-blue-500 text-white py-4 px-8 w-full">
-        <h1 className="text-3xl font-semibold">Wellify</h1>
-        <p className="text-sm">Connect with Mental Health Professionals</p>
-      </header>
-      <section className="container mx-auto mt-8 text-center">
-        <h2 className="text-2xl font-semibold mb-4">Why Mental Health Matters</h2>
-        <p className="text-gray-700">
-          Mental health is crucial for overall well-being. Wellify is here to help you connect with
-          mental health professionals, find support, and access valuable resources.
-        </p>
-      </section>
-      <section className="bg-white py-8">
-        <div className="container mx-auto flex flex-col items-center">
-          <h2 className="text-2xl font-semibold mb-4">Key Features</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {/* Feature 1 */}
-            <div className="bg-blue-200 p-4 rounded-lg text-center">
-              <h3 className="text-xl font-semibold mb-2">Connect with Professionals</h3>
-              <p className="text-gray-700">
-                Easily find and connect with mental health professionals remotely for support.
-              </p>
-            </div>
-            {/* Feature 2 */}
-            <div className="bg-blue-200 p-4 rounded-lg text-center">
-              <h3 className="text-xl font-semibold mb-2">Like and Comment on Posts</h3>
-              <p className="text-gray-700">
-                Engage with mental health professionals' posts, share your thoughts, and provide
-                support.
-              </p>
-            </div>
-            {/* Feature 3 */}
-            <div className="bg-blue-200 p-4 rounded-lg text-center">
-              <h3 className="text-xl font-semibold mb-2">Blogs Section</h3>
-              <p className="text-gray-700">
-                Explore informative blogs and articles on mental health to stay informed and
-                empowered.
-              </p>
-            </div>
-            {/* Feature 4 */}
-            <div className="bg-blue-200 p-4 rounded-lg text-center">
-              <h3 className="text-xl font-semibold mb-2">Find Professionals Nearby</h3>
-              <p className="text-gray-700">
-                Discover mental health professionals in your area to connect with in person.
-              </p>
+    <div className="bg-gradient-to-b from-blue-500 to-blue-300 flex flex-col">
+      <main className="flex-grow">
+        <section className="container mx-auto p-16 text-center text-white">
+          <h1 className="text-4xl font-extrabold mb-4">Connect with Mental Health Professionals</h1>
+          <p className="text-lg mb-8">
+            Discover a supportive community of mental health professionals and resources for your well-being.
+          </p>
+          <a href="#features" className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded-full text-lg transition duration-300">
+            Explore Features
+          </a>
+        </section>
+        <section id="features" className="bg-white py-12">
+          <div className="container mx-auto text-center">
+            <h2 className="text-3xl font-extrabold mb-8">Key Features</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {/* Feature 1 */}
+              <div className="p-4 rounded-lg shadow-lg">
+                <h3 className="text-xl font-semibold mb-2">Find Professionals</h3>
+                <p className="text-gray-700">
+                  Easily connect with mental health professionals based on your preferences.
+                </p>
+              </div>
+              {/* Feature 2 */}
+              <div className="p-4 rounded-lg shadow-lg">
+                <h3 className="text-xl font-semibold mb-2">Engage with Posts</h3>
+                <p className="text-gray-700">
+                  Like, comment, and engage with posts from professionals in the community.
+                </p>
+              </div>
+              {/* Feature 3 */}
+              <div className="p-4 rounded-lg shadow-lg">
+                <h3 className="text-xl font-semibold mb-2">Blogs & Resources</h3>
+                <p className="text-gray-700">
+                  Explore informative blogs and resources on mental health and well-being.
+                </p>
+              </div>
+              {/* Feature 4 */}
+              <div className="p-4 rounded-lg shadow-lg">
+                <h3 className="text-xl font-semibold mb-2">Locate Nearby</h3>
+                <p className="text-gray-700">
+                  Discover mental health professionals nearby for in-person support.
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-      <footer className="bg-blue-500 text-white py-4 px-8 w-full mt-auto">
-        <p className="text-center text-sm">&copy; 2023 Wellify. All rights reserved.</p>
+        </section>
+        <section id="blogs" className="bg-gradient-to-t from-blue-500 to-blue-300 py-12 text-white">
+          <div className="container mx-auto text-center">
+            <h2 className="text-3xl font-extrabold mb-8">Explore Our Blogs</h2>
+            <p className="text-lg mb-8">
+              Stay informed with our latest articles and resources on mental health and well-being.
+            </p>
+            <a href="#" className="bg-white hover:bg-gray-200 text-blue-500 py-2 px-6 rounded-full text-lg transition duration-300">
+              Read Blogs
+            </a>
+          </div>
+        </section>
+      </main>
+      <footer className="bg-white py-4 text-center">
+        <p className="text-gray-800 text-sm">&copy; 2023 Wellify. All rights reserved.</p>
       </footer>
     </div>
   );
