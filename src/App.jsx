@@ -7,11 +7,13 @@ import Signup from './components/Signup';
 import AdminLogin from './components/admin/AdminLogin.jsx';
 import AdminDashboard from './components/admin/AdminDashboard.jsx';
 import Home from './Home.jsx'
-import Profile from './Profile.jsx'
+import Profile from './components/Profile.jsx'
 import { useAuth } from './contexts/AuthContext';
 import CreatePost from './components/Posts/CreatePost';
 import TherapistsAroundMe from './components/TherapistsAroundMe';
 import SearchTherapists from './components/SearchTherapists';
+import ProfessionalProfile from './components/ProfessionalProfile';
+import GratitudeJournal from './components/GratitudeJournal';
 
 function App() {
   const {currentUser}= useAuth()
@@ -20,7 +22,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route  path="/" element={<Home />} />
-          {!currentUser && <Route  path="/login" element={<Login />} />}
+          {<Route  path="/login" element={<Login />} />}
           {!currentUser && <Route  path="/signup" element={<Signup />} />}
           {!currentUser && <Route  path="/admin/login" element={<AdminLogin />} />}
           {currentUser && <Route  path="/admin/" element={<AdminDashboard />} />}
@@ -29,6 +31,8 @@ function App() {
           {!currentUser && <Route  path="/admin" element={<AdminDashboard />} />} 
           {currentUser && <Route path="/aroundme" element={<TherapistsAroundMe/>} />}
           {currentUser && <Route path="/search/therapists" element={<SearchTherapists/>} />}
+          <Route path="/professional/:id" element={<ProfessionalProfile/>} />
+          <Route path="/gratitudejournal" element={<GratitudeJournal/>} />
           {/* {currentUser && <Route  path="/thera-feed" element={<Feed/>} />} */}
         </Routes>
         <ToastContainer position="top-right"/>

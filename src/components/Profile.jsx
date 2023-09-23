@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { collection, query, where, orderBy, getDocs } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from './contexts/AuthContext.jsx';
-import { db } from './firebase/firebase';
+import { useAuth } from '../contexts/AuthContext.jsx';
+import { db } from '../firebase/firebase.js';
 
 
 function Profile() {
@@ -53,7 +53,7 @@ function Profile() {
 
   return (
     <div className="w-1/2 bg-white rounded-lg shadow-lg p-6">
-      <h1 className="text-2xl font-bold mb-4">Profile</h1>
+      <h1 className="text-2xl font-bold mb-4">{name}'sProfile</h1>
       <div className="flex items-center mb-4">
         <img src={profilePicture} alt='profile' className="w-16 h-16 rounded-full mr-4" />
         <div>

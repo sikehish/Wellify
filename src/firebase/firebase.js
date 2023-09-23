@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+import { getMessaging } from "firebase/messaging";
 
 import {
   getAuth,
@@ -25,6 +26,8 @@ const auth = getAuth();
 
 const db = getFirestore(app);
 
+const messaging = getMessaging(app);
+
 const signInWithGoogle = async () => {
   const provider = new GoogleAuthProvider();
   try {
@@ -40,4 +43,5 @@ export {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   db,
+  messaging,
 };

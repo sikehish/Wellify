@@ -13,7 +13,6 @@ function Home() {
         setIsProfessional(true)
       } else {
         setIsProfessional(false)
-        console.log(currentUser)
       }
     }
     if (currentUser) {
