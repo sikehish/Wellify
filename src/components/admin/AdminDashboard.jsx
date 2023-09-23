@@ -2,9 +2,16 @@
 import React, { useEffect, useState } from 'react';
 import { collection, getDocs, deleteDoc, doc, updateDoc } from 'firebase/firestore';
 import { db } from '../../firebase/firebase';
+import { useAuth } from '../../contexts/AuthContext';
+import { useNavigate } from 'react-router';
+// import {AiFillDelete} from 'react-icons/ai'
+// import {TiTick} from 'react-icons/ti'
+// import {ImCross} from 'react-icons/im'
 
 const Dashboard = () => {
   const [professionals, setProfessionals] = useState([]);
+  const { currentUser }= useAuth()
+  const navigate=useNavigate()
 
   const fetchProfessionals = async () => {
     const professionalsCollection = collection(db, 'professionals');
@@ -14,13 +21,14 @@ const Dashboard = () => {
     professionalsSnapshot.forEach((doc) => {
       professionalList.push({ id: doc.id, ...doc.data() });
     });
-
+    console.log(professionalList)
     setProfessionals(professionalList);
   };
 
   useEffect(() => {
+    if(currentUser==null) navigate('/admin/login');
     fetchProfessionals();
-  }, []);
+  }, [currentUser]);
 
   const handleStatusChange = async (id, status) => {
     const professionalRef = doc(db, 'professionals', id);
@@ -65,7 +73,7 @@ const Dashboard = () => {
                   )}
                 </td>
                 <td className="py-3 px-6">{professional.name}</td>
-                <td className="py-3 px-6">{professional.location}</td>
+                <td className="py-3 px-6">{professional.location.name}</td>
                 <td className="py-3 px-6">{professional.description}</td>
                 <td className="py-3 px-6">{professional.licenseNumber}</td>
                 <td className="py-3 px-6">{professional.gender}</td>
@@ -89,15 +97,15 @@ const Dashboard = () => {
                         professional.verified === true ? false : true
                       )
                     }
-                    className="bg-blue-500 text-white py-1 px-2 rounded-md mr-2 hover:bg-blue-600 transition duration-300"
+                    className="text-blue-500 py-1 px-1 rounded-md hover:bg-blue-600 transition duration-300"
                   >
-                    {professional.verified === true? 'Unverify' : 'Verify'}
+                    {professional.verified === false? '✅': '❌'}
                   </button>
                   <button
                     onClick={() => handleDeleteProfessional(professional.id)}
-                    className="bg-red-500 text-white py-1 px-2 rounded-md hover:bg-red-600 transition duration-300"
+                    className="text-red-500 py-1  rounded-md hover:bg-red-600 transition duration-300"
                   >
-                    Delete
+                  🗑️
                   </button>
                 </td>
               </tr>

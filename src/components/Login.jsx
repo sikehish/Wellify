@@ -12,16 +12,19 @@ const Login = () => {
   const navigate = useNavigate(); 
 
   const { login, currentUser } = useAuth(); // Use the login function from AuthContext
+  
   useEffect(() => {
     if (currentUser) {
       navigate('/') 
     }
   }, [currentUser]);
+
   const handleEmailLogin = async (e) => {
     e.preventDefault();
     try {
       await login(email, password); // Use the login function
       toast.success('Logged in successfully!');
+      navigate('/') 
     } catch (error) {
       console.error(error.message);
       toast.error('Error logging in. Please check your email and password.');
