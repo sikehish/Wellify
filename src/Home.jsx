@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useAuth } from './contexts/AuthContext.jsx'
+import LandingPage from './components/LandingPage.jsx'
 
 function Home() {
   const { checkProfessional, currentUser } = useAuth()
@@ -15,7 +16,9 @@ function Home() {
   return (
     <div>
       <p>Home</p>
-      {isProfessional ? <p>isProfessional</p>: <p>Not a professional</p>}
+      {/* {isProfessional ? <p>isProfessional</p>: <p>Not a professional</p>} */}
+      {!currentUser && <LandingPage />}
+      
     </div>
   )
 }
