@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import AdminLogin from './components/admin/AdminLogin.jsx';
+import AdminDashboard from './components/admin/AdminDashboard.jsx';
 import Home from './Home.jsx'
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route  path="/login" element={<Login />} />
           <Route  path="/signup" element={<Signup />} />
           <Route  path="/admin/login" element={<AdminLogin />} />
+          <Route  path="/admin/" element={<AdminDashboard />} />
         </Routes>
         <ToastContainer position="top-right"/>
         {/* <ToastContainer position="top-right" autoClose={3000} hideProgressBar /> */}
