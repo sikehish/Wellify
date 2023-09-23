@@ -8,13 +8,15 @@ import {MdOutlineAddComment} from 'react-icons/md'
 import {MdOutlineComment} from 'react-icons/md'
 import {AiOutlineCheck} from 'react-icons/ai'
 import {AiOutlinePlus} from 'react-icons/ai'
-import { useNavigate } from 'react-router-dom';
 
 const Post = ({ post, user }) => {
   const [newComment, setNewComment] = useState('');
   const [showComments, setShowComments] = useState(false);
+  const [postLikes, setPostLikes] = useState(post.likes);
+  const [isFollowingLocal, setIsFollowingLocal] = useState(post.isFollowing);
+
+const [postComments, setPostComments] = useState(post.comments);
   const userId=user.uid
-  const navigate = useNavigate(); 
 
   // Handle adding a new comment
   const handleAddComment = async () => {
@@ -49,23 +51,18 @@ const Post = ({ post, user }) => {
   });  
 
     // Clear the input field after adding a comment
+    setPostComments([...postComments, newCommentDoc]);
     setNewComment('');
   };
 
   // Handle liking/unliking a post
   const handleLikePost = async () => {
-    const postsCollection = collection(db, 'posts');
     const postRef = doc(db, 'posts', post.id);
-
-    if (post.likes.includes(user.uid)) {
-      // Remove user's UID from the likes array
-      const updatedLikes = post.likes.filter((uid) => uid !== user.uid);
+    const updatedLikes = postLikes.includes(user.uid)
+    ? postLikes.filter((uid) => uid !== user.uid)
+    : [...postLikes, user.uid];
+  setPostLikes(updatedLikes);
       await updateDoc(postRef, { likes: updatedLikes });
-    } else {
-      // Add user's UID to the likes array
-      const updatedLikes = [...post.likes, user.uid];
-      await updateDoc(postRef, { likes: updatedLikes });
-    }
   };
   
   const handleFollowPost = async () => {
@@ -91,6 +88,7 @@ const Post = ({ post, user }) => {
       const updatedFollowers = prof?.followers.filter((uid) => uid !== user.uid);
       await updateDoc(usersRef, { following: updatedFollowing });
       await updateDoc(profRef, { followers: updatedFollowers });
+      setIsFollowingLocal(false);
     } else {
       // Add user's UID to the likes array
     //   await updateDoc(postRef, {
@@ -103,6 +101,8 @@ const Post = ({ post, user }) => {
       // await updateDoc(profRef, { followers: updatedFollowers });
       await updateDoc(usersRef,{ following: arrayUnion(post.userId)});
       await updateDoc(profRef,{ followers: arrayUnion(user.uid)});
+      setIsFollowingLocal(true);
+      
     }
   };
 
@@ -117,13 +117,13 @@ const Post = ({ post, user }) => {
               className="h-10 w-10 rounded-full object-cover my-auto"
               />
               <div className='ml-3'>
-              <p onClick={()=>navigate(`/professional/${userId}`)}>{post.name}</p>        
+              <p>{post.name}</p>        
         <span className="text-xs text-gray-500">{(new Date(post.timestamp.toDate())).toDateString()}</span>
               </div>
         </div>
         {post.userId!=user.uid && <button className='flex items-center text-md mr-5' type='button' onClick={handleFollowPost}>
-          {post.isFollowing? <span className='px-1'>Following </span>: <span className='px-1'>Follow</span> }
-          {post.isFollowing? <AiOutlineCheck /> :  <AiOutlinePlus />}
+          {isFollowingLocal? <span className='px-1'>Following </span>: <span className='px-1'>Follow</span> }
+          {isFollowingLocal? <AiOutlineCheck /> :  <AiOutlinePlus />}
         </button>}
               </div>
       <div>
@@ -149,22 +149,22 @@ const Post = ({ post, user }) => {
             className={`text-sm mr-2`}
             onClick={handleLikePost}
             >
-            {post.likes.includes(user.uid)? <FcLike /> : <FcLikePlaceholder />} 
+            {postLikes.includes(user.uid)? <FcLike /> : <FcLikePlaceholder />} 
           </button>
-          <span className="text-sm">{post.likes.length}</span>
+          <span className="text-sm">{postLikes.length}</span>
         <button
           className=" py-1 px-2 mt-2 rounded hover:bg-blue-100 transition duration-100"
           onClick={(e)=>setShowComments(prev=> !prev)}
           >
           <MdOutlineComment />
         </button>
-        <span className="text-sm">{post.comments.length}</span>
+        <span className="text-sm">{postComments.length}</span>
         <div className="mt-2">
         
       </div>
         
           </div>
-          {showComments && (post.comments.length>0 ? post.comments.map((comment, index) => (
+          {showComments && (postComments.length>0 ? postComments.map((comment, index) => (
           <div className='ml-3 mt-5 mb-4'>
           {/* <img
                 src={post.profilePicture}
