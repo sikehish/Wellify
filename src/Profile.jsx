@@ -7,7 +7,7 @@ import { db } from './firebase/firebase';
 
 function Profile() {
   const navigate = useNavigate();
-  const { currentUser } = useAuth();
+  const { currentUser, checkProfessional } = useAuth();
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [profilePicture, setProfilePicture] = useState(null);
@@ -19,9 +19,9 @@ function Profile() {
   },[currentUser])
 
   useEffect(() => {
-    async function getProfile() {
+    async function getProfile(collectionName) {
     const q = query(
-      collection(db, 'users'),
+      collection(db, collectionName),
       where('email', '==', currentUser?.email),
     );
   
@@ -38,7 +38,16 @@ function Profile() {
 
     }
     if (currentUser) {
-      getProfile();
+      const isProfessional = checkProfessional(currentUser.uid);
+      isProfessional.then((result) => {
+        if (result) {
+          // console.log("Getting professionals!")
+          getProfile('professionals');
+        } else {
+          // console.log("Getting users!")
+          getProfile('users');
+        }
+      })
     }
   },[currentUser])
 

@@ -55,13 +55,13 @@ export function AuthProvider({ children }) {
    async function checkProfessional(uid) {
     const docRef = doc(db, "professionals", uid)
     const docSnap = await getDoc(docRef);
-console.log(docSnap.exists())
-if (docSnap.exists()) {
-  return true;
-} else {
-  // docSnap.data() will be undefined in this case
-  return false;
-}
+    // console.log("Is professional?",docSnap.exists())
+    if (docSnap.exists()) {
+      return true;
+    } else {
+      // docSnap.data() will be undefined in this case
+      return false;
+    }
   }
 
   // Log out function
