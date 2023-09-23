@@ -1,6 +1,6 @@
 // src/components/Post.js
 import React, { useState } from 'react';
-import { addDoc, collection, doc, updateDoc } from 'firebase/firestore';
+import { addDoc, arrayUnion, collection, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../../firebase/firebase';
 import {FcLikePlaceholder} from 'react-icons/fc'
 import {FcLike} from 'react-icons/fc'
@@ -16,14 +16,33 @@ const Post = ({ post, user }) => {
   const handleAddComment = async () => {
     if (!newComment) return;
 
-    const commentsCollection = collection(db, 'posts', post.id, 'comments');
+    const commentsRef = collection(db, 'posts');
     const newCommentDoc = {
       text: newComment,
       userId: user.uid,
       timestamp: new Date(),
     };
 
-    await addDoc(commentsCollection, newCommentDoc);
+    let docRef = doc(db, "users", user.uid);
+    let docSnap = await getDoc(docRef);
+    console.log(docSnap.exists())
+    if (docSnap.exists()) {
+      const data=docSnap.data();
+      newCommentDoc.name=data.name;
+    newCommentDoc.profilePicture=data.profilePicture;   
+    } else {
+       docRef = doc(db, "professionals", user.uid);
+       docSnap = await getDoc(docRef);
+       console.log(docSnap.exists())
+      const data=docSnap.data();
+      newCommentDoc.name=data.name;
+    newCommentDoc.profilePicture=data.profilePicture;   
+    }
+    
+    const postRef = doc(db, 'posts', post.id);
+    await updateDoc(postRef, {
+      comments: arrayUnion(newCommentDoc)
+  });  
 
     // Clear the input field after adding a comment
     setNewComment('');
@@ -61,16 +80,16 @@ const Post = ({ post, user }) => {
       <div>
 
       <p className="mb-2 pb-10 pt-4 px-2">{post.text}</p>
-      {<div className=" flex mt-2 px-2 w-2/3 text-left">
+      {<div className=" flex mt-2 mx-2 px-2 w-full text-left">
         <input
           type="text"
-          className="w-full p-2 border rounded"
+          className="w-full p-2 border rounded-lg"
           placeholder="Add a comment..."
           value={newComment}
           onChange={(e) => setNewComment(e.target.value)}
           />
           <button
-          className=" py-1 px-2 mt-2 rounded hover:bg-blue-100 transition duration-300"
+          className=" py-1 px-2 mt-2 mx-2 rounded hover:bg-blue-100 transition duration-300"
           onClick={handleAddComment}
           >
           <MdOutlineAddComment />
@@ -90,17 +109,28 @@ const Post = ({ post, user }) => {
           >
           <MdOutlineComment />
         </button>
+        <span className="text-sm">{post.comments.length}</span>
         <div className="mt-2">
-        {showComments && (post.comments.length>0 ? post.comments.map((comment, index) => (
-          <p key={index} className="text-sm mb-1">
-            {comment.text} - <span className="text-gray-500">{comment.userId}</span>
-          </p>
-        )) : <p className="text-sm mb-1 w-max">
+        
+      </div>
+        
+          </div>
+          {showComments && (post.comments.length>0 ? post.comments.map((comment, index) => (
+          <div className='ml-3 mt-5 mb-4'>
+          {/* <img
+                src={post.profilePicture}
+                alt="Profile"
+                className="h-5 w-5 rounded-full object-cover my-auto"
+                /> */}
+                <p>{comment.name}</p>        
+          <span className="text-xs text-gray-500">{(new Date(post.timestamp.toDate())).toDateString()}</span>
+                <div className='ml-2 mt-2'>
+                <p>{comment.text}</p>        
+                </div>
+          </div>
+        )) : <p className="block mb-1 w-max">
         No comments :(
       </p>)}
-      </div>
-       
-          </div>
       </div>
     </div>
   );
