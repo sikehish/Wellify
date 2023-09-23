@@ -5,9 +5,11 @@ function Home() {
   const { checkProfessional, currentUser } = useAuth()
   const [isProfessional, setIsProfessional] = useState(false)
   useEffect(() => {
-    if (checkProfessional(currentUser?.uid)) {
+    if (currentUser!=null && checkProfessional(currentUser?.uid)) {
       setIsProfessional(true)
     }
+    setIsProfessional(false)
+    console.log(currentUser)
   },[currentUser])
 
   return (
