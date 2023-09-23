@@ -18,28 +18,24 @@ const LandingPage = () => {
           <div className="container mx-auto text-center">
             <h2 className="text-3xl font-extrabold mb-8">Key Features</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {/* Feature 1 */}
               <div className="p-4 rounded-lg shadow-lg">
                 <h3 className="text-xl font-semibold mb-2">Find Professionals</h3>
                 <p className="text-gray-700">
                   Easily connect with mental health professionals based on your preferences.
                 </p>
               </div>
-              {/* Feature 2 */}
               <div className="p-4 rounded-lg shadow-lg">
                 <h3 className="text-xl font-semibold mb-2">Engage with Posts</h3>
                 <p className="text-gray-700">
                   Like, comment, and engage with posts from professionals in the community.
                 </p>
               </div>
-              {/* Feature 3 */}
               <div className="p-4 rounded-lg shadow-lg">
                 <h3 className="text-xl font-semibold mb-2">Blogs & Resources</h3>
                 <p className="text-gray-700">
                   Explore informative blogs and resources on mental health and well-being.
                 </p>
               </div>
-              {/* Feature 4 */}
               <div className="p-4 rounded-lg shadow-lg">
                 <h3 className="text-xl font-semibold mb-2">Locate Nearby</h3>
                 <p className="text-gray-700">
