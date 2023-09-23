@@ -48,11 +48,9 @@ const Feed = ({ user, isProfessional }) => {
     <div className="container mx-auto p-8 bg-feedbg h-screen">
       <h2 className="text-5xl font-bold mb-8" style={{marginLeft:'25vw'}}>Feed</h2>
       {isProfessional && <CreatePostButton />}
-      {console.log(posts)}
       {posts.map((post) => {
-        console.log(post)
         return (
-        <Post key={post.id} post={post} user={user}/>
+        <Post key={post.id} post={post} user={user} authorId={post.userId} showCase={false}/>
       )})}
     </div>
   );

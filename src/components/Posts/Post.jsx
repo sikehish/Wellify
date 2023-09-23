@@ -9,8 +9,9 @@ import {MdOutlineAddComment} from 'react-icons/md'
 import {MdOutlineComment} from 'react-icons/md'
 import {AiOutlineCheck} from 'react-icons/ai'
 import {AiOutlinePlus} from 'react-icons/ai'
+import { useNavigate } from 'react-router-dom';
 
-const Post = ({ post, user }) => {
+const Post = ({ post, user, authorId, showCase }) => {
   const [newComment, setNewComment] = useState('');
   const [postComments, setPostComments] = useState(post.comments);
   const [showComments, setShowComments] = useState(false);
@@ -20,6 +21,8 @@ const Post = ({ post, user }) => {
   
 
   const userId=user.uid
+
+  const navigate = useNavigate(); 
 
   // Handle adding a new comment
   const handleAddComment = async () => {
@@ -83,7 +86,7 @@ const Post = ({ post, user }) => {
     const docSnap2 = await getDoc(usersRef);
     const user1=docSnap2.data();
 
-    console.log(user1,prof)
+    // console.log(user1,prof)
 
     console.log(post)
     if (user1?.following?.includes(post.userId)) {
@@ -120,15 +123,16 @@ const Post = ({ post, user }) => {
               className="h-10 w-10 rounded-full object-cover my-auto"
               />
               <div className='ml-3'>
-              <p>{post.name}</p>        
+              <p className='hover:underline hover:cursor-pointer' onClick={()=>navigate(`/professional/${authorId}`)}>{post.name}</p>        
         <span className="text-xs text-gray-500">{(new Date(post.timestamp.toDate())).toDateString()}</span>
               </div>
         </div>
-        {post.userId!=user.uid && <button className='flex items-center text-md mr-5' type='button' onClick={handleFollowPost}>
+        {!showCase ? post.userId!=user.uid && <button className='flex items-center text-md mr-5' type='button' onClick={handleFollowPost}>
           {isFollowingLocal? <span className='px-1'>Following </span>: <span className='px-1'>Follow</span> }
           {isFollowingLocal? <AiOutlineCheck /> :  <AiOutlinePlus />}
-        </button>}
-              </div>
+        </button>
+        : <div></div>}
+        </div>
       <div>
 
       <p className="mb-2 pb-10 pt-4 px-2">{post.text}</p>

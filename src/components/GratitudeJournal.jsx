@@ -40,7 +40,7 @@ const GratitudeJournal = () => {
 
     return (
         <div className="max-w-md mx-auto mt-10">
-            <h1 className="text-4xl font-bold mb-5">Gratitude Journal</h1>
+            <h2 className="text-5xl font-bold mb-8">Gratitude Journal</h2>
             <div className="mt-5 mb-10 flex flex-col">
                 <input
                     type="text"

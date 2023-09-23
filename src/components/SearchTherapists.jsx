@@ -33,7 +33,7 @@ const SearchTherapists = () => {
 
     return (
     <div className="container mx-auto p-4">
-        <h1 className="text-2xl font-bold mb-4">Find a Therapist</h1>
+        <h2 className="text-5xl font-bold mb-8">Find a Therapist</h2>
         <div className="mb-4">
         <input
             type="text"
@@ -72,7 +72,7 @@ const SearchTherapists = () => {
             <p className="text-text text-center mt-2">{profile.description}</p>
             </div>
         ))}
-    </div>
+        </div>
         )}
     </div>
     );
