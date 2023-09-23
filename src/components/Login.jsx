@@ -65,14 +65,14 @@ const Login = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-3 rounded-md hover:bg-blue-600 focus:outline-none"
+            className="w-full bg-primary text-background py-3 rounded-md hover:bg-blue-600 focus:outline-none"
           >
             Login
           </button>
         </form>
         <button
           onClick={handleGoogleLogin}
-          className="w-full mt-4 bg-red-500 text-white py-3 rounded-md hover:bg-red-600 focus:outline-none"
+          className="w-full mt-4 bg-secondary text-primary py-3 rounded-md hover:bg-red-600 focus:outline-none"
         >
           Login with Google
         </button>
