@@ -223,13 +223,7 @@ const Signup = () => {
             />
           </div>
           <div className="mb-4">
-            <input
-              type="text"
-              placeholder="Location"
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
-              className="w-full p-3 border rounded-md focus:outline-none focus:ring focus:border-blue-500"
-            />
+          <Map address={location} setAddress={setLocation} />
             {/* <Map className="w-full p-3 border rounded-md focus:outline-none focus:ring focus:border-blue-500"
             address={location} setAddress={setLocation}/> */}
           </div>

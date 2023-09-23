@@ -8,7 +8,9 @@ import {
   signOut,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { collection, doc, setDoc } from "firebase/firestore";
+import { collection, doc, getDoc, setDoc } from "firebase/firestore";
+import { getDocs, query, where } from "firebase/firestore";
+
 
 
 export const AuthContext = createContext();
@@ -50,6 +52,18 @@ export function AuthProvider({ children }) {
     }
   }
 
+   async function checkProfessional(uid) {
+    const docRef = doc(db, "professionals", uid)
+    const docSnap = await getDoc(docRef);
+    // console.log("Is professional?",docSnap.exists())
+    if (docSnap.exists()) {
+      return true;
+    } else {
+      // docSnap.data() will be undefined in this case
+      return false;
+    }
+  }
+
   // Log out function
   function logout() {
     console.log(currentUser)
@@ -72,7 +86,8 @@ export function AuthProvider({ children }) {
     login,
     logout,
     addUserToFirestore,
-    addProfessionalToFirestore
+    addProfessionalToFirestore,
+    checkProfessional
   };
 
   return (
