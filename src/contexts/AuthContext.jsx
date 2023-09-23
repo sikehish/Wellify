@@ -9,6 +9,8 @@ import {
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { collection, doc, setDoc } from "firebase/firestore";
+import { getDocs, query, where } from "firebase/firestore";
+
 
 
 export const AuthContext = createContext();
@@ -50,6 +52,16 @@ export function AuthProvider({ children }) {
     }
   }
 
+  async function checkProfessional(uid) {
+    const user = doc(db, "professionals", uid)
+    if (user) {
+      return true;
+    } else {
+      console.log('Not a professional.');
+      return false;
+    }
+  }
+
   // Log out function
   function logout() {
     console.log(currentUser)
@@ -72,7 +84,8 @@ export function AuthProvider({ children }) {
     login,
     logout,
     addUserToFirestore,
-    addProfessionalToFirestore
+    addProfessionalToFirestore,
+    checkProfessional
   };
 
   return (
