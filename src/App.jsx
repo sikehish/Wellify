@@ -9,6 +9,7 @@ import AdminDashboard from './components/admin/AdminDashboard.jsx';
 import Home from './Home.jsx'
 import Profile from './Profile.jsx'
 import TherapistsAroundMe from './components/TherapistsAroundMe';
+import SearchTherapists from './components/SearchTherapists';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route  path="/admin/" element={<AdminDashboard />} />
           <Route  path="/profile" element={<Profile/>} />
           <Route  path="/aroundme" element={<TherapistsAroundMe/>} />
+          <Route  path="/search/therapists" element={<SearchTherapists/>} />
         </Routes>
         <ToastContainer position="top-right"/>
         {/* <ToastContainer position="top-right" autoClose={3000} hideProgressBar /> */}

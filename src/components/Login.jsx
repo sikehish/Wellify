@@ -14,14 +14,16 @@ const Login = () => {
   const { login, currentUser, checkProfessional } = useAuth(); // Use the login function from AuthContext
   useEffect(() => {
     if (currentUser) {
-      toast.success('Logged in successfully!');
-      navigate('/') 
+      navigate('/')
     }
   }, [currentUser]);
   const handleEmailLogin = async (e) => {
     e.preventDefault();
     try {
       await login(email, password); // Use the login function
+      if (currentUser) {
+        toast.success('Logged in successfully!');
+      }
     } catch (error) {
       console.error(error.message);
       toast.error('Error logging in. Please check your email and password.');

@@ -51,13 +51,14 @@ export function AuthProvider({ children }) {
       if (result) {
         if (result.docs[0].data().verified === false) {
           toast.error('Your account is not verified yet. Please wait for an admin to verify your account.');
-          navigate('/login')
-          return false;
         } else {
           return signInWithEmailAndPassword(auth, email, password);
         }
+      } else {
+        return signInWithEmailAndPassword(auth, email, password);
+      }
       } 
-    })
+    )
   }
 
   function addUserToFirestore(uid, userData) {

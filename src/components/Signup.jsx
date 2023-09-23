@@ -78,7 +78,7 @@ const Signup = () => {
       };
       await addProfessionalToFirestore(uid, userData);
       toast.success('Signed up successfully!');
-      navigate('/')
+      toast.warning('Please wait for an admin to verify your account.');
     } catch (error) {
       console.error(error.message);
       toast.error('Error signing up. Please try again.');
