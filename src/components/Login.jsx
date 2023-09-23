@@ -11,9 +11,10 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate(); 
 
-  const { login, currentUser } = useAuth(); // Use the login function from AuthContext
+  const { login, currentUser, checkProfessional } = useAuth(); // Use the login function from AuthContext
   useEffect(() => {
     if (currentUser) {
+      toast.success('Logged in successfully!');
       navigate('/') 
     }
   }, [currentUser]);
@@ -21,7 +22,6 @@ const Login = () => {
     e.preventDefault();
     try {
       await login(email, password); // Use the login function
-      toast.success('Logged in successfully!');
     } catch (error) {
       console.error(error.message);
       toast.error('Error logging in. Please check your email and password.');

@@ -10,6 +10,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { collection, doc, getDoc, setDoc } from "firebase/firestore";
 import { getDocs, query, where } from "firebase/firestore";
+import { toast } from "react-toastify";
 
 
 
@@ -31,7 +32,32 @@ export function AuthProvider({ children }) {
 
   // Log in function
   function login(email, password) {
-    return signInWithEmailAndPassword(auth, email, password);
+    // Checking if the professional is verified
+    async function isProfessional() {
+      const q = query(
+        collection(db, 'professionals'),
+        where('email', '==', email),
+      );
+    
+      const querySnapshot = await getDocs(q);
+      if (querySnapshot.empty) {
+        return false;
+      } else {
+        return querySnapshot;
+      }
+    }
+    const isProfessionalPromise = isProfessional();
+    isProfessionalPromise.then((result) => {
+      if (result) {
+        if (result.docs[0].data().verified === false) {
+          toast.error('Your account is not verified yet. Please wait for an admin to verify your account.');
+          navigate('/login')
+          return false;
+        } else {
+          return signInWithEmailAndPassword(auth, email, password);
+        }
+      } 
+    })
   }
 
   function addUserToFirestore(uid, userData) {
@@ -57,7 +83,7 @@ export function AuthProvider({ children }) {
     const docSnap = await getDoc(docRef);
     // console.log("Is professional?",docSnap.exists())
     if (docSnap.exists()) {
-      return true;
+      return docSnap;
     } else {
       // docSnap.data() will be undefined in this case
       return false;
@@ -66,7 +92,7 @@ export function AuthProvider({ children }) {
 
   // Log out function
   function logout() {
-    console.log(currentUser)
+    // console.log(currentUser)
     signOut(auth);
     navigate('/login')
   }
