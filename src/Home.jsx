@@ -22,10 +22,8 @@ function Home() {
 
   return (
     <div>
-      <p>Home</p>
       {/* {isProfessional ? <p>isProfessional</p>: <p>Not a professional</p>} */}
       {!currentUser && <LandingPage />}
-      
     </div>
   )
 }
