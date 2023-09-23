@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { db } from '../firebase/firebase';
-import { collection, getDocs } from 'firebase/firestore';
-
+import { collection, getDocs, query } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
 
 // Calculate the distance (in kilometers) between two sets of coordinates using the Haversine formula
 function calculateDistance(lat1, lon1, lat2, lon2) {
@@ -22,17 +22,21 @@ function calculateDistance(lat1, lon1, lat2, lon2) {
 const TherapistsAroundMe = () => {
   const [profiles, setProfiles] = useState([]);
   const [userLocation, setUserLocation] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProfiles = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, 'professionals'));
-        const profileData = querySnapshot.docs.map((doc) => doc.data());
+        const querySnapshot = await getDocs(query(collection(db, 'professionals')));
+        console.log(querySnapshot.docs);
+        const profileData = querySnapshot.docs.map((doc) => ({id:doc.id, ...(doc.data())}));
+        console.log(profileData);
         setProfiles(profileData);
       } catch (error) {
         console.error('Error fetching profiles:', error);
       }
     };
+
 
     fetchProfiles();
   }, []);
@@ -79,7 +83,7 @@ const TherapistsAroundMe = () => {
 
   return (
     <React.Fragment>
-    <h1 className="text-2xl font-bold mb-4">Therapists Around Me</h1>
+    <h2 className="text-5xl font-bold mb-8 mt-10 text-center" >Therapists Around Me</h2>
     <div className="container mx-auto p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {profiles.map((profile, index) => (
             <div key={index} className="bg-white p-4 shadow rounded-lg">
@@ -92,7 +96,7 @@ const TherapistsAroundMe = () => {
                 />
                 </div>
             )}
-            <h2 className="text-lg font-semibold text-center">{profile.name}</h2>
+            <h2 className="text-lg font-semibold text-center" onClick={()=>navigate(`/professional/${profile.id}`)}>{profile.name}</h2>
             <p className="text-gray-500 text-center">📍{profile.location.name}</p>
             <p className="text-center text-gray-400">
                 <a className=" hover:underline" href={`mailto:${profile.email}`}>

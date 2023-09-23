@@ -34,10 +34,10 @@ const LandingPage = () => {
                 </p>
               </div>
               <div className="p-4 rounded-lg shadow-lg">
-                <h3 className="text-6xl font-semibold mb-2">📄</h3>
-                <h3 className="text-xl font-semibold mb-2">Blogs & Resources</h3>
+                <h3 className="text-6xl font-semibold mb-2">📝</h3>
+                <h3 className="text-xl font-semibold mb-2">Gratitude Journal</h3>
                 <p className="text-gray-700">
-                  Explore informative blogs and resources on mental health and well-being.
+                Practice gratitude and improve your mental health and well-being.
                 </p>
               </div>
               <div className="p-4 rounded-lg shadow-lg">

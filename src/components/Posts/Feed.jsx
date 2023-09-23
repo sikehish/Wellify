@@ -49,7 +49,7 @@ const Feed = ({ user, isProfessional }) => {
       {isProfessional && <CreatePostButton />}
       {posts.map((post) => {
         return (
-        <Post key={post.id} post={post} user={user} authorId={post.userId}/>
+        <Post key={post.id} post={post} user={user} authorId={post.userId} showCase={false}/>
       )})}
     </div>
   );
