@@ -16,31 +16,29 @@ const Feed = ({ user, isProfessional }) => {
       const postsCollection = collection(db, 'posts');
       const postsQuery = query(postsCollection, orderBy('timestamp', 'desc'));
       const postsSnapshot = await getDocs(postsQuery);
-
-     
-      const postList = [];
-
-      const funfun = async () => {
-        postsSnapshot.forEach((docu) => {
-        const fun = async () => {
-          const profDoc = doc(db, "professionals", docu.data().userId)
-          const docSnap = await getDoc(profDoc);
-          const data=docSnap.data();
-          postList.push({ id: docu.id, ...docu.data() });
-        }
-        fun()
-        });
-        return postList;
-      }
-      funfun().then(data=> console.log(data)).then(postList=>setPosts(postList));
-      console.log("Hi 1")
-
+  
+      const postPromises = [];
+  
+      postsSnapshot.forEach((docu) => {
+        const profDoc = doc(db, "professionals", docu.data().userId);
+        const promise = getDoc(profDoc)
+          .then((dat) => dat.data())
+          .then((data) => ({
+            id: docu.id,
+            isFollowing: data?.followers?.includes(user.uid),
+            ...docu.data(),
+          }));
+  
+        postPromises.push(promise);
+      });
+  
+      const postList = await Promise.all(postPromises);
+      setPosts(postList);
     };
-
+  
     fetchPosts();
-    console.log("Hi 2")
-    console.log(posts)
-  }, []);
+  }, [user]);
+  
 
   // Handle creating a new post
 

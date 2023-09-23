@@ -17,7 +17,7 @@ const AdminLogin = () => {
   const handleEmailLogin = async (e) => {
     e.preventDefault();
     try {
-        console.log(email)
+        // console.log(email)
     const q = query(collection(db, "admins"), where("email", "==", email));
     const querySnapshot = await getDocs(q);
     if(querySnapshot["_snapshot"]["docChanges"].length==1) await login(email, password);
@@ -35,7 +35,7 @@ const AdminLogin = () => {
     const provider = new GoogleAuthProvider();
     try {
       const user = await signInWithPopup(auth, provider);
-      console.log(user._tokenResponse.email)
+      // console.log(user._tokenResponse.email)
       const q = query(collection(db, "admins"), where("email", "==",user._tokenResponse.email ));
     const querySnapshot = await getDocs(q);
     if(querySnapshot["_snapshot"]["docChanges"].length==1)  toast.success('Logged in with Google successfully!');
