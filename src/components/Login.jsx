@@ -11,11 +11,10 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate(); 
 
-  const { login, currentUser } = useAuth(); // Use the login function from AuthContext
-  
+  const { login, currentUser, checkProfessional } = useAuth(); // Use the login function from AuthContext
   useEffect(() => {
     if (currentUser) {
-      navigate('/') 
+      navigate('/')
     }
   }, [currentUser]);
 
@@ -23,8 +22,9 @@ const Login = () => {
     e.preventDefault();
     try {
       await login(email, password); // Use the login function
-      toast.success('Logged in successfully!');
-      navigate('/') 
+      if (currentUser) {
+        toast.success('Logged in successfully!');
+      }
     } catch (error) {
       console.error(error.message);
       toast.error('Error logging in. Please check your email and password.');
@@ -68,14 +68,14 @@ const Login = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-primary text-background py-3 rounded-md hover:bg-blue-600 focus:outline-none"
+            className="w-full bg-primary text-background py-3 rounded-md focus:outline-none"
           >
             Login
           </button>
         </form>
         <button
           onClick={handleGoogleLogin}
-          className="w-full mt-4 bg-secondary text-primary py-3 rounded-md hover:bg-red-600 focus:outline-none"
+          className="w-full mt-4 bg-secondary text-primary py-3 rounded-md hover:bg-accent hover:text-secondary focus:outline-none"
         >
           Login with Google
         </button>
