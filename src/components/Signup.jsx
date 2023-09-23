@@ -78,7 +78,7 @@ const Signup = () => {
       };
       await addProfessionalToFirestore(uid, userData);
       toast.success('Signed up successfully!');
-      navigate('/')
+      toast.warning('Please wait for an admin to verify your account.');
     } catch (error) {
       console.error(error.message);
       toast.error('Error signing up. Please try again.');
@@ -320,7 +320,7 @@ const Signup = () => {
           </form>
           <button
             onClick={handleGoogleSignup}
-            className="w-full mt-4 bg-secondary text-primary py-3 rounded-md hover:bg-red-600 focus:outline-none"
+            className="w-full mt-4 bg-secondary text-primary py-3 rounded-md hover:bg-accent hover:text-secondary focus:outline-none"
           >
             Sign Up with Google
           </button>

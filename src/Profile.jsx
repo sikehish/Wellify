@@ -20,21 +20,21 @@ function Profile() {
 
   useEffect(() => {
     async function getProfile(collectionName) {
-    const q = query(
-      collection(db, collectionName),
-      where('email', '==', currentUser?.email),
-    );
-  
-    const querySnapshot = await getDocs(q);
-    if (querySnapshot.empty) {
-      console.log('No matching document found.');
-      return;
-    }
-    // console.log(querySnapshot.docs[0].data())
-    const user = querySnapshot.docs[0].data();
-    setEmail(user.email);
-    setName(user.name);
-    setProfilePicture(user.profilePicture);
+      const q = query(
+        collection(db, collectionName),
+        where('email', '==', currentUser?.email),
+      );
+    
+      const querySnapshot = await getDocs(q);
+      if (querySnapshot.empty) {
+        console.log('No matching document found.');
+        return;
+      }
+      // console.log(querySnapshot.docs[0].data())
+      const user = querySnapshot.docs[0].data();
+      setEmail(user.email);
+      setName(user.name);
+      setProfilePicture(user.profilePicture);
 
     }
     if (currentUser) {
