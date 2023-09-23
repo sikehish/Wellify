@@ -41,6 +41,15 @@ export function AuthProvider({ children }) {
     }
   }
 
+  function addProfessionalToFirestore(uid, professionalData) {
+    try {
+      // Reference to the 'professionals' collection
+      return setDoc(doc(db, "professionals", uid), professionalData);
+    } catch (error) {
+      console.error('Error adding professional to Firestore:', error);
+    }
+  }
+
   // Log out function
   function logout() {
     console.log(currentUser)
@@ -62,7 +71,8 @@ export function AuthProvider({ children }) {
     signup,
     login,
     logout,
-    addUserToFirestore
+    addUserToFirestore,
+    addProfessionalToFirestore
   };
 
   return (
