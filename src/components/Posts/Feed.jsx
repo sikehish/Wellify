@@ -16,6 +16,7 @@ const Feed = ({ user, isProfessional }) => {
       const postsCollection = collection(db, 'posts');
       const postsQuery = query(postsCollection, orderBy('timestamp', 'desc'));
       const postsSnapshot = await getDocs(postsQuery);
+      
   
       const postPromises = [];
   
@@ -51,7 +52,7 @@ const Feed = ({ user, isProfessional }) => {
       {posts.map((post) => {
         console.log(post)
         return (
-        <Post key={post.id} post={post} user={user} />
+        <Post key={post.id} post={post} user={user}/>
       )})}
     </div>
   );

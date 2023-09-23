@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { getMessaging } from "firebase/messaging";
+import { getMessaging, getToken } from "firebase/messaging";
 
 import {
   getAuth,
@@ -44,4 +44,5 @@ export {
   signInWithEmailAndPassword,
   db,
   messaging,
+  getToken,
 };

@@ -1,6 +1,7 @@
 // src/components/Post.js
 import React, { useState } from 'react';
 import { addDoc, arrayUnion, collection, doc, getDoc, updateDoc } from 'firebase/firestore';
+import { useFollowStatus } from '../../contexts/FollowStatusContext';
 import { db } from '../../firebase/firebase';
 import {FcLikePlaceholder} from 'react-icons/fc'
 import {FcLike} from 'react-icons/fc'
@@ -11,11 +12,13 @@ import {AiOutlinePlus} from 'react-icons/ai'
 
 const Post = ({ post, user }) => {
   const [newComment, setNewComment] = useState('');
+  const [postComments, setPostComments] = useState(post.comments);
   const [showComments, setShowComments] = useState(false);
   const [postLikes, setPostLikes] = useState(post.likes);
-  const [isFollowingLocal, setIsFollowingLocal] = useState(post.isFollowing);
+  const { followStatus, toggleFollowStatus } = useFollowStatus();
+  const isFollowingLocal = followStatus[post.userId] || false;
+  
 
-const [postComments, setPostComments] = useState(post.comments);
   const userId=user.uid
 
   // Handle adding a new comment
@@ -61,8 +64,9 @@ const [postComments, setPostComments] = useState(post.comments);
     const updatedLikes = postLikes.includes(user.uid)
     ? postLikes.filter((uid) => uid !== user.uid)
     : [...postLikes, user.uid];
-  setPostLikes(updatedLikes);
-      await updateDoc(postRef, { likes: updatedLikes });
+    await updateDoc(postRef, { likes: updatedLikes });
+    console.log(updatedLikes)
+    setPostLikes(updatedLikes); 
   };
   
   const handleFollowPost = async () => {
@@ -84,11 +88,10 @@ const [postComments, setPostComments] = useState(post.comments);
     console.log(post)
     if (user1?.following?.includes(post.userId)) {
       // Remove user's UID from the likes array
-      const updatedFollowing = user1?.following.filter((uid) => uid !== post.userId);
-      const updatedFollowers = prof?.followers.filter((uid) => uid !== user.uid);
+      const updatedFollowing = user1?.following?.filter((uid) => uid !== post.userId);
+      const updatedFollowers = prof?.followers?.filter((uid) => uid !== user.uid);
       await updateDoc(usersRef, { following: updatedFollowing });
       await updateDoc(profRef, { followers: updatedFollowers });
-      setIsFollowingLocal(false);
     } else {
       // Add user's UID to the likes array
     //   await updateDoc(postRef, {
@@ -101,9 +104,9 @@ const [postComments, setPostComments] = useState(post.comments);
       // await updateDoc(profRef, { followers: updatedFollowers });
       await updateDoc(usersRef,{ following: arrayUnion(post.userId)});
       await updateDoc(profRef,{ followers: arrayUnion(user.uid)});
-      setIsFollowingLocal(true);
       
     }
+    toggleFollowStatus(post.userId);
   };
 
   return (
@@ -171,7 +174,7 @@ const [postComments, setPostComments] = useState(post.comments);
                 alt="Profile"
                 className="h-5 w-5 rounded-full object-cover my-auto"
                 /> */}
-                <p>{comment.name}</p>    
+                <p className='bg-feedbg w-max py-2 px-4 rounded-3xl'>{comment.name}</p>    
 
           <span className="text-xs text-gray-500">{(new Date(post.timestamp.toDate())).toDateString()}</span>
                 <div className='ml-2 mt-2'>

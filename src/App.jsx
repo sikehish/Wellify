@@ -14,12 +14,16 @@ import TherapistsAroundMe from './components/TherapistsAroundMe';
 import SearchTherapists from './components/SearchTherapists';
 import ProfessionalProfile from './components/ProfessionalProfile';
 import GratitudeJournal from './components/GratitudeJournal';
+import { useEffect } from 'react';
+import NotificationButton from './NotificationButton';
 
 function App() {
   const {currentUser}= useAuth()
+  
   return (
       <>
         <Navbar />
+        <NotificationButton />
         <Routes>
           <Route  path="/" element={<Home />} />
           <Route  path="/login" element={<Login />} />

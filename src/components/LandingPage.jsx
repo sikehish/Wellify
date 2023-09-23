@@ -50,7 +50,7 @@ const LandingPage = () => {
             </div>
           </div>
         </section>
-        <section id="blogs" className="bg-background text-text py-12 text-white">
+        <section id="blogs" className="bg-background  py-12 text-white">
           <div className="container mx-auto text-center">
             <h2 className="text-3xl text-text font-extrabold mb-8">Explore Our Blogs</h2>
             <p className="text-lg text-primary mb-8">
