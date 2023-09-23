@@ -320,7 +320,7 @@ const Signup = () => {
           </form>
           <button
             onClick={handleGoogleSignup}
-            className="w-full mt-4 bg-secondary text-primary py-3 rounded-md hover:bg-red-600 focus:outline-none"
+            className="w-full mt-4 bg-secondary text-primary py-3 rounded-md hover:bg-accent hover:text-secondary focus:outline-none"
           >
             Sign Up with Google
           </button>
