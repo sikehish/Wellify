@@ -22,7 +22,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route  path="/" element={<Home />} />
-          {<Route  path="/login" element={<Login />} />}
+          <Route  path="/login" element={<Login />} />
           {!currentUser && <Route  path="/signup" element={<Signup />} />}
           {!currentUser && <Route  path="/admin/login" element={<AdminLogin />} />}
           {currentUser && <Route  path="/admin/" element={<AdminDashboard />} />}

@@ -1,6 +1,6 @@
 // src/components/Feed.js
 import React, { useState, useEffect } from 'react';
-import { collection, getDocs, addDoc, query, orderBy } from 'firebase/firestore';
+import { collection, getDocs, addDoc, query, orderBy, doc, getDoc } from 'firebase/firestore';
 import { db } from '../../firebase/firebase';
 import Post from './Post';
 import CreatePost from './CreatePost';
@@ -19,8 +19,11 @@ const Feed = ({ user, isProfessional }) => {
 
       const postList = [];
 
-      postsSnapshot.forEach((doc) => {
-        postList.push({ id: doc.id, ...doc.data() });
+      postsSnapshot.forEach(async (docu) => {
+        const profDoc = doc(db, "professionals", docu.data().userId)
+    const docSnap = await getDoc(profDoc);
+    const data=docSnap.data();
+        postList.push({ id: docu.id, isFollowing: data?.followers.includes(user.uid), ...docu.data() });
       });
 
       setPosts(postList);
