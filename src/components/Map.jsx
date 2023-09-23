@@ -1,7 +1,8 @@
 import {useCallback, useEffect, useRef, useState} from 'react'
 
 
-const apiKey = import.meta.env.API_KEY;
+const apiKey = import.meta.env.VITE_API_KEY;
+console.log(apiKey)
 const mapApiJs = 'https://maps.googleapis.com/maps/api/js';
 const geocodeJson = 'https://maps.googleapis.com/maps/api/geocode/json';
 
