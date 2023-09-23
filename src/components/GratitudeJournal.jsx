@@ -40,20 +40,8 @@ const GratitudeJournal = () => {
 
     return (
         <div className="max-w-md mx-auto mt-10">
-            <h1 className="text-3xl font-bold mb-5">Gratitude Journal</h1>
-            <ul className="space-y-2">
-                {gratitudeItems.map((item) => (
-                    <li key={item.id} className="flex justify-between items-center bg-white rounded-lg shadow-md p-4">
-                        <div>
-                            <h5 className="text-xl font-bold">{item.title}</h5>
-                            <span className="text-sm text-gray-500 block">{item.date} {item.time}</span>
-                            <span className="text-md">{item.body}</span>
-                        </div>
-                        <button onClick={() => handleDeleteGratitudeItem(item.id)} className="bg-red-500 hover:bg-red-400 text-white rounded-lg px-3 py-1 ml-4">🗑️</button>
-                    </li>
-                ))}
-            </ul>
-            <div className="mt-5 flex flex-col">
+            <h1 className="text-4xl font-bold mb-5">Gratitude Journal</h1>
+            <div className="mt-5 mb-10 flex flex-col">
                 <input
                     type="text"
                     value={newGratitudeItem.title}
@@ -69,6 +57,18 @@ const GratitudeJournal = () => {
                 />
                 <button onClick={handleAddGratitudeItem} className="bg-green-500 hover:bg-green-600 text-white rounded-lg px-3 py-1">Add</button>
             </div>
+            <ul className="space-y-2">
+                {gratitudeItems.map((item) => (
+                    <li key={item.id} className="flex justify-between items-center bg-white rounded-lg shadow-md p-4">
+                        <div>
+                            <h5 className="text-xl font-bold">{item.title}</h5>
+                            <span className="text-sm text-gray-500 block">{item.date} {item.time}</span>
+                            <span className="text-md">{item.body}</span>
+                        </div>
+                        <button onClick={() => handleDeleteGratitudeItem(item.id)} className="bg-red-500 hover:bg-red-400 text-white rounded-lg px-3 py-1 ml-4">🗑️</button>
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 };

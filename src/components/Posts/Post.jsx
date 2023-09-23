@@ -8,11 +8,13 @@ import {MdOutlineAddComment} from 'react-icons/md'
 import {MdOutlineComment} from 'react-icons/md'
 import {AiOutlineCheck} from 'react-icons/ai'
 import {AiOutlinePlus} from 'react-icons/ai'
+import { useNavigate } from 'react-router-dom';
 
 const Post = ({ post, user }) => {
   const [newComment, setNewComment] = useState('');
   const [showComments, setShowComments] = useState(false);
   const userId=user.uid
+  const navigate = useNavigate(); 
 
   // Handle adding a new comment
   const handleAddComment = async () => {
@@ -115,7 +117,7 @@ const Post = ({ post, user }) => {
               className="h-10 w-10 rounded-full object-cover my-auto"
               />
               <div className='ml-3'>
-              <p>{post.name}</p>        
+              <p onClick={()=>navigate(`/professional/${userId}`)}>{post.name}</p>        
         <span className="text-xs text-gray-500">{(new Date(post.timestamp.toDate())).toDateString()}</span>
               </div>
         </div>

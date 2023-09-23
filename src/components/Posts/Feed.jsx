@@ -17,19 +17,29 @@ const Feed = ({ user, isProfessional }) => {
       const postsQuery = query(postsCollection, orderBy('timestamp', 'desc'));
       const postsSnapshot = await getDocs(postsQuery);
 
+     
       const postList = [];
 
-      postsSnapshot.forEach(async (docu) => {
-        const profDoc = doc(db, "professionals", docu.data().userId)
-    const docSnap = await getDoc(profDoc);
-    const data=docSnap.data();
-        postList.push({ id: docu.id, isFollowing: data?.followers.includes(user.uid), ...docu.data() });
-      });
+      const funfun = async () => {
+        postsSnapshot.forEach((docu) => {
+        const fun = async () => {
+          const profDoc = doc(db, "professionals", docu.data().userId)
+          const docSnap = await getDoc(profDoc);
+          const data=docSnap.data();
+          postList.push({ id: docu.id, ...docu.data() });
+        }
+        fun()
+        });
+        return postList;
+      }
+      funfun().then(data=> console.log(data)).then(postList=>setPosts(postList));
+      console.log("Hi 1")
 
-      setPosts(postList);
     };
 
     fetchPosts();
+    console.log("Hi 2")
+    console.log(posts)
   }, []);
 
   // Handle creating a new post
@@ -39,9 +49,12 @@ const Feed = ({ user, isProfessional }) => {
     <div className="container mx-auto p-8 bg-feedbg h-screen">
       <h2 className="text-5xl font-bold mb-8" style={{marginLeft:'25vw'}}>Feed</h2>
       {isProfessional && <CreatePostButton />}
-      {posts.map((post) => (
+      {console.log(posts)}
+      {posts.map((post) => {
+        console.log(post)
+        return (
         <Post key={post.id} post={post} user={user} />
-      ))}
+      )})}
     </div>
   );
 };
