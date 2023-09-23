@@ -10,10 +10,11 @@ import {AiOutlineCheck} from 'react-icons/ai'
 import {AiOutlinePlus} from 'react-icons/ai'
 import { useNavigate } from 'react-router-dom';
 
-const Post = ({ post, user }) => {
+const Post = ({ post, user, authorId }) => {
   const [newComment, setNewComment] = useState('');
   const [showComments, setShowComments] = useState(false);
   const userId=user.uid
+
   const navigate = useNavigate(); 
 
   // Handle adding a new comment
@@ -117,7 +118,7 @@ const Post = ({ post, user }) => {
               className="h-10 w-10 rounded-full object-cover my-auto"
               />
               <div className='ml-3'>
-              <p onClick={()=>navigate(`/professional/${userId}`)}>{post.name}</p>        
+              <p className='hover:underline hover:cursor-pointer' onClick={()=>navigate(`/professional/${authorId}`)}>{post.name}</p>        
         <span className="text-xs text-gray-500">{(new Date(post.timestamp.toDate())).toDateString()}</span>
               </div>
         </div>

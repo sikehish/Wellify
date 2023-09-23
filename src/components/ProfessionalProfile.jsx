@@ -16,6 +16,7 @@ function ProfessionalProfile() {
   const [gender, setGender] = useState('');
   const [licenseNumber, setLicenseNumber] = useState('');
   const [address, setAddress] = useState('');
+  const [description, setDescription] = useState('');
   
   const [posts, setPosts] = useState([]);
   const [userDoc,setUserDoc] = useState(null);
@@ -23,6 +24,7 @@ function ProfessionalProfile() {
   const [doesntExist, setDoesntExist] = useState(true);
 
 
+  // Getting the profile
   useEffect(() => {
       const docRef = doc(db, 'professionals', docid);
       // Fetch the document
@@ -42,6 +44,8 @@ function ProfessionalProfile() {
               setName(documentData.name);
               setProfilePicture(documentData.profilePicture);
               setLocation(documentData.location.name);
+              setDescription(documentData.description);
+              setGender(documentData.gender);
             }
           } else {
             setDoesntExist(true);
@@ -77,19 +81,21 @@ function ProfessionalProfile() {
 
   return (
     <React.Fragment>
-    <div className="w-1/2 bg-white rounded-lg shadow-lg p-6">
-      <h1 className="text-2xl font-bold mb-4">{name}'sProfile</h1>
+      <h1 className="text-4xl ml-80 font-bold mb-10 mt-8">{name}'s Profile</h1>
+    <div className="w-1/2 px-auto mx-auto mt-5 bg-white rounded-lg shadow-lg p-6">
       <div className="flex items-center mb-4">
         <img src={profilePicture} alt='profile' className="w-16 h-16 rounded-full mr-4" />
         <div>
           <p className="text-lg font-medium">{name}</p>
-          <p className="text-gray-600">{email}</p>
-          <p className="text-gray-600">{location}</p>
+          <p className="text-gray-600">{gender}</p>
+          <p className="text-gray-600 hover:underline"><a href={`mailto:${email}`}>{email}</a></p>
+          <p className="text-gray-600">📍{location}</p>
+          <p className="text-text mt-5">{description}</p>
         </div>
       </div>
     </div>
     <div className="mt-8">
-      <h1 className="text-2xl font-bold mb-4">Posts</h1>
+    <h1 className="text-4xl ml-80 font-bold mb-10 mt-8">Posts</h1>
       { posts.map((post,i)=><Post post={post} user ={userDoc}/>)}
     </div>
     </React.Fragment>
