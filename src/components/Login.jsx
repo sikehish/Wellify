@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { auth } from '../firebase/firebase';
 import { useAuth } from '../contexts/AuthContext.jsx';
-import { redirect, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('');
