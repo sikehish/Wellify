@@ -1,6 +1,7 @@
 // src/components/LandingPage.js
 import React from 'react';
 import NotificationButton from '../NotificationButton';
+import { Link } from 'react-router-dom';
 
 const LandingPage = () => {
   return (
@@ -58,9 +59,9 @@ const LandingPage = () => {
             <p className="text-lg text-primary mb-8">
               Join an exclusive commnity of people having unrestricted access to mental health info and positivity :)
             </p>
-            <a href="/signup" className="bg-white hover:bg-gray-200 text-blue-500 py-2 px-6 rounded-full text-lg transition duration-300">
+            <Link to="/signup" className="bg-white hover:bg-gray-200 text-blue-500 py-2 px-6 rounded-full text-lg transition duration-300">
               Sign Up
-            </a>
+            </Link>
           </div>
         </section>
       </main>
