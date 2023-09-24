@@ -20,7 +20,6 @@ const logger = require("firebase-functions/logger");
 
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
-const { Messaging } = require("firebase-admin");
 
 admin.initializeApp();
 
@@ -32,16 +31,13 @@ exports.scheduleNotification = functions.pubsub
   .onRun((context) => {
     // This function runs every day at 10 pm (UTC timezone)
 
-    // Define your notification message
     const message = {
       notification: {
         title: "Reminder",
         body: "Don't forget to fill your gratitude journal!",
       },
-      // Add any additional data here
+      topic: "gratitude-journal",
     };
 
-    // Get the FCM tokens of users you want to notify and send the message
-    const tokens = ["USER_FCM_TOKEN_1", "USER_FCM_TOKEN_2"];
     return messaging.send(message);
   });

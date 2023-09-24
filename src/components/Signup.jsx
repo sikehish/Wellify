@@ -64,7 +64,7 @@ const Signup = () => {
       const storageRef = ref(storage, `profilePictures/${email}`);
       await uploadBytes(storageRef, profilePicture);
       const profilePictureUrl = await getDownloadURL(storageRef);
-      const userCredential=await signup(name, email, password, confirmPassword, profilePictureUrl, licenseNumber, location, description, selectedGender);
+      const userCredential=await signup(name, email, password, confirmPassword);
       const uid = userCredential.user.uid;
       const userData = {
         name,
