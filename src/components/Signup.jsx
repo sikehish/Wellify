@@ -158,7 +158,7 @@ const Signup = () => {
 
   return proForm ? 
     (    
-      <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="min-h-screen flex items-center justify-center bg-gray-100 py-12">
       <div className="bg-white p-8 rounded-lg shadow-lg w-96">
         <h2 className="text-3xl font-semibold mb-6 text-center">Sign Up</h2>
         <h3 className='text-l mb-6 font-light text-center'>Registered Mental Health Professional</h3>

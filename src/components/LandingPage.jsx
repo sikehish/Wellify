@@ -54,12 +54,12 @@ const LandingPage = () => {
         </section>
         <section id="blogs" className="bg-background  py-12 text-white">
           <div className="container mx-auto text-center">
-            <h2 className="text-3xl text-text font-extrabold mb-8">Explore Our Blogs</h2>
+            <h2 className="text-3xl text-text font-extrabold mb-8">Sign up now!</h2>
             <p className="text-lg text-primary mb-8">
-              Stay informed with our latest articles and resources on mental health and well-being.
+              Join an exclusive commnity of people having unrestricted access to mental health info and positivity :)
             </p>
-            <a href="#" className="bg-white hover:bg-gray-200 text-blue-500 py-2 px-6 rounded-full text-lg transition duration-300">
-              Read Blogs
+            <a href="/signup" className="bg-white hover:bg-gray-200 text-blue-500 py-2 px-6 rounded-full text-lg transition duration-300">
+              Sign Up
             </a>
           </div>
         </section>

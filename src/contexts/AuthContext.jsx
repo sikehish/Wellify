@@ -57,10 +57,11 @@ export function AuthProvider({ children }) {
         if (result.docs[0].data().verified === false) {
           toast.error('Your account is not verified yet. Please wait for an admin to verify your account.');
         } else {
-          return signInWithEmailAndPassword(auth, email, password);
+           signInWithEmailAndPassword(auth, email, password).then(()=> toast.success('Logged in successfully!')).catch(()=>toast.error('Login not possible :('))
+
         }
       } else {
-        return signInWithEmailAndPassword(auth, email, password);
+        signInWithEmailAndPassword(auth, email, password).then(()=> toast.success('Logged in successfully!')).catch(()=>toast.error('Login not possible :('))
       }
       } 
     )
