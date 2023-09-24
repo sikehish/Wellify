@@ -20,8 +20,6 @@ const logger = require("firebase-functions/logger");
 
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
-const { Messaging } = require("firebase-admin");
-const { getMessaging } = require("firebase/messaging");
 
 admin.initializeApp();
 
