@@ -141,7 +141,7 @@ function ProfessionalProfile() {
       </div>
       <div className="mt-8">
         <h1 className="text-4xl ml-4 md:ml-80 font-bold mb-10 mt-8">Posts</h1>
-        { posts.map((post,i)=><Post key={i} post={post} user ={userDoc} authorId={docid} showCase={true}/>)}
+        { posts.map((post,i)=><Post key={i} post={post} user ={currentUser} authorId={docid} showCase={true}/>)}
       </div>
     </React.Fragment>
   )

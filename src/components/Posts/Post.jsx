@@ -63,7 +63,7 @@ const Post = ({ post, user, authorId, showCase }) => {
 
   // Handle liking/unliking a post
   const handleLikePost = async () => {
-    // console.log(user)
+    console.log(post.id, user.uid)
     const postRef = doc(db, 'posts', post.id);
     const updatedLikes = postLikes.includes(user.uid)
     ? postLikes.filter((uid) => uid !== user.uid)
@@ -89,7 +89,7 @@ const Post = ({ post, user, authorId, showCase }) => {
 
     // console.log(user1,prof)
 
-    // console.log(post)
+    console.log(post)
     if (user1?.following?.includes(post.userId)) {
       // Remove user's UID from the likes array
       const updatedFollowing = user1?.following?.filter((uid) => uid !== post.userId);
