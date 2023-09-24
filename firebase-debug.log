@@ -1,0 +1,250 @@
+[debug] [2023-09-24T00:56:54.700Z] ----------------------------------------------------------------------
+[debug] [2023-09-24T00:56:54.702Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\hisha\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only functions
+[debug] [2023-09-24T00:56:54.702Z] CLI Version:   12.5.4
+[debug] [2023-09-24T00:56:54.703Z] Platform:      win32
+[debug] [2023-09-24T00:56:54.703Z] Node Version:  v18.15.0
+[debug] [2023-09-24T00:56:54.703Z] Time:          Sun Sep 24 2023 06:26:54 GMT+0530 (India Standard Time)
+[debug] [2023-09-24T00:56:54.703Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-09-24T00:56:54.770Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-09-24T00:56:54.771Z] > authorizing via signed-in user (hisham0502@gmail.com)
+[debug] [2023-09-24T00:56:54.771Z] [iam] checking project codefury6 for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2023-09-24T00:56:54.772Z] > refreshing access token with scopes: []
+[debug] [2023-09-24T00:56:54.778Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-09-24T00:56:54.778Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-09-24T00:56:55.194Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2023-09-24T00:56:55.194Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-09-24T00:56:55.206Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/codefury6:testIamPermissions [none]
+[debug] [2023-09-24T00:56:55.206Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/codefury6:testIamPermissions x-goog-quota-user=projects/codefury6
+[debug] [2023-09-24T00:56:55.206Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/codefury6:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2023-09-24T00:56:56.855Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/codefury6:testIamPermissions 200
+[debug] [2023-09-24T00:56:56.856Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/codefury6:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2023-09-24T00:56:56.856Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/codefury6/serviceAccounts/codefury6@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2023-09-24T00:56:56.856Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/codefury6/serviceAccounts/codefury6@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2023-09-24T00:56:57.605Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/codefury6/serviceAccounts/codefury6@appspot.gserviceaccount.com:testIamPermissions 200
+[debug] [2023-09-24T00:56:57.605Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/codefury6/serviceAccounts/codefury6@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[info] 
+[info] === Deploying to 'codefury6'...
+[info] 
+[info] i  deploying functions 
+[debug] [2023-09-24T00:56:57.609Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/codefury6 [none]
+[debug] [2023-09-24T00:56:58.256Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/codefury6 200
+[debug] [2023-09-24T00:56:58.257Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/codefury6 {"projectId":"codefury6","projectNumber":"33403590710","displayName":"codefury6","name":"projects/codefury6","resources":{"hostingSite":"codefury6","storageBucket":"codefury6.appspot.com","locationId":"asia-south1"},"state":"ACTIVE","etag":"1_7d41f88b-bd95-485e-bac8-2e4bccbb1caa"}
+[info] i  functions: preparing codebase default for deployment 
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[info] i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled... 
+[debug] [2023-09-24T00:56:58.259Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/codefury6/services/cloudfunctions.googleapis.com [none]
+[debug] [2023-09-24T00:56:58.259Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/codefury6/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/codefury6
+[debug] [2023-09-24T00:56:58.260Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/codefury6/services/runtimeconfig.googleapis.com [none]
+[debug] [2023-09-24T00:56:58.260Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/codefury6/services/runtimeconfig.googleapis.com x-goog-quota-user=projects/codefury6
+[debug] [2023-09-24T00:56:58.261Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/codefury6/services/cloudbuild.googleapis.com [none]
+[debug] [2023-09-24T00:56:58.261Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/codefury6/services/cloudbuild.googleapis.com x-goog-quota-user=projects/codefury6
+[debug] [2023-09-24T00:56:58.261Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/codefury6/services/artifactregistry.googleapis.com [none]
+[debug] [2023-09-24T00:56:58.262Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/codefury6/services/artifactregistry.googleapis.com x-goog-quota-user=projects/codefury6
+[debug] [2023-09-24T00:56:59.972Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/codefury6/services/runtimeconfig.googleapis.com 200
+[debug] [2023-09-24T00:56:59.973Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/codefury6/services/runtimeconfig.googleapis.com [omitted]
+[debug] [2023-09-24T00:56:59.973Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/codefury6/services/artifactregistry.googleapis.com 200
+[debug] [2023-09-24T00:56:59.973Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/codefury6/services/artifactregistry.googleapis.com [omitted]
+[warn] !  artifactregistry: missing required API artifactregistry.googleapis.com. Enabling now... 
+[debug] [2023-09-24T00:56:59.974Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1/projects/codefury6/services/artifactregistry.googleapis.com:enable [none]
+[debug] [2023-09-24T00:56:59.974Z] >>> [apiv2][(partial)header] POST https://serviceusage.googleapis.com/v1/projects/codefury6/services/artifactregistry.googleapis.com:enable x-goog-quota-user=projects/codefury6
+[debug] [2023-09-24T00:56:59.978Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/codefury6/services/cloudfunctions.googleapis.com 200
+[debug] [2023-09-24T00:56:59.978Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/codefury6/services/cloudfunctions.googleapis.com [omitted]
+[info] +  functions: required API cloudfunctions.googleapis.com is enabled 
+[debug] [2023-09-24T00:56:59.981Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/codefury6/services/cloudbuild.googleapis.com 200
+[debug] [2023-09-24T00:56:59.981Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/codefury6/services/cloudbuild.googleapis.com [omitted]
+[warn] !  functions: missing required API cloudbuild.googleapis.com. Enabling now... 
+[debug] [2023-09-24T00:56:59.981Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1/projects/codefury6/services/cloudbuild.googleapis.com:enable [none]
+[debug] [2023-09-24T00:56:59.981Z] >>> [apiv2][(partial)header] POST https://serviceusage.googleapis.com/v1/projects/codefury6/services/cloudbuild.googleapis.com:enable x-goog-quota-user=projects/codefury6
+[debug] [2023-09-24T00:57:01.867Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1/projects/codefury6/services/artifactregistry.googleapis.com:enable 200
+[debug] [2023-09-24T00:57:01.867Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1/projects/codefury6/services/artifactregistry.googleapis.com:enable [omitted]
+[debug] [2023-09-24T00:57:01.976Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1/projects/codefury6/services/cloudbuild.googleapis.com:enable 200
+[debug] [2023-09-24T00:57:01.977Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1/projects/codefury6/services/cloudbuild.googleapis.com:enable [omitted]
+[debug] [2023-09-24T00:57:11.868Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/codefury6/services/artifactregistry.googleapis.com [none]
+[debug] [2023-09-24T00:57:11.869Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/codefury6/services/artifactregistry.googleapis.com x-goog-quota-user=projects/codefury6
+[debug] [2023-09-24T00:57:11.992Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/codefury6/services/cloudbuild.googleapis.com [none]
+[debug] [2023-09-24T00:57:11.992Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/codefury6/services/cloudbuild.googleapis.com x-goog-quota-user=projects/codefury6
+[debug] [2023-09-24T00:57:13.527Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/codefury6/services/artifactregistry.googleapis.com 200
+[debug] [2023-09-24T00:57:13.527Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/codefury6/services/artifactregistry.googleapis.com [omitted]
+[info] +  artifactregistry: required API artifactregistry.googleapis.com is enabled 
+[debug] [2023-09-24T00:57:13.685Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/codefury6/services/cloudbuild.googleapis.com 200
+[debug] [2023-09-24T00:57:13.685Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/codefury6/services/cloudbuild.googleapis.com [omitted]
+[info] +  functions: required API cloudbuild.googleapis.com is enabled 
+[debug] [2023-09-24T00:57:13.687Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/codefury6/adminSdkConfig [none]
+[debug] [2023-09-24T00:57:14.095Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/codefury6/adminSdkConfig 200
+[debug] [2023-09-24T00:57:14.095Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/codefury6/adminSdkConfig {"projectId":"codefury6","storageBucket":"codefury6.appspot.com","locationId":"asia-south1"}
+[debug] [2023-09-24T00:57:14.095Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/codefury6/configs [none]
+[debug] [2023-09-24T00:57:14.588Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/codefury6/configs 200
+[debug] [2023-09-24T00:57:14.588Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/codefury6/configs {}
+[debug] [2023-09-24T00:57:14.590Z] Validating nodejs source
+[debug] [2023-09-24T00:57:17.540Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "18"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^11.8.0",
+    "firebase-functions": "^4.3.1"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^3.1.0"
+  },
+  "private": true
+}
+[debug] [2023-09-24T00:57:17.540Z] Building nodejs source
+[info] i  functions: Loading and analyzing source code for codebase default to determine what to deploy 
+[debug] [2023-09-24T00:57:17.541Z] Could not find functions.yaml. Must use http discovery
+[debug] [2023-09-24T00:57:17.551Z] Found firebase-functions binary at 'C:\Users\hisha\CodeFiles\Wellify\functions\node_modules\.bin\firebase-functions'
+[info] Serving at port 8640
+
+[debug] [2023-09-24T00:57:18.846Z] Got response from /__/functions.yaml {"endpoints":{"scheduleNotification":{"platform":"gcfv1","availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"serviceAccountEmail":null,"vpc":null,"scheduleTrigger":{"schedule":"0 22 * * *","retryConfig":{"retryCount":null,"maxDoublings":null,"maxRetryDuration":null,"maxBackoffDuration":null,"minBackoffDuration":null},"timeZone":"Etc/UTC"},"labels":{},"entryPoint":"scheduleNotification"}},"specVersion":"v1alpha1","requiredAPIs":[{"api":"cloudscheduler.googleapis.com","reason":"Needed for scheduled functions."}]}
+[info] shutdown requested via /__/quitquitquit
+
+[info] i  functions: preparing functions directory for uploading... 
+[info] i  functions: packaged C:\Users\hisha\CodeFiles\Wellify\functions (66.8 KB) for uploading 
+[debug] [2023-09-24T00:57:18.906Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v1/projects/codefury6/locations/-/functions [none]
+[debug] [2023-09-24T00:57:19.624Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v1/projects/codefury6/locations/-/functions 200
+[debug] [2023-09-24T00:57:19.624Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v1/projects/codefury6/locations/-/functions {}
+[debug] [2023-09-24T00:57:19.625Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/codefury6/locations/-/functions filter=environment%3D%22GEN_2%22
+[debug] [2023-09-24T00:57:21.406Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/codefury6/locations/-/functions 200
+[debug] [2023-09-24T00:57:21.407Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/codefury6/locations/-/functions {}
+[info] i  functions: ensuring required API cloudscheduler.googleapis.com is enabled... 
+[debug] [2023-09-24T00:57:21.408Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/codefury6/services/cloudscheduler.googleapis.com [none]
+[debug] [2023-09-24T00:57:21.408Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/codefury6/services/cloudscheduler.googleapis.com x-goog-quota-user=projects/codefury6
+[debug] [2023-09-24T00:57:23.074Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/codefury6/services/cloudscheduler.googleapis.com 200
+[debug] [2023-09-24T00:57:23.074Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/codefury6/services/cloudscheduler.googleapis.com [omitted]
+[warn] !  functions: missing required API cloudscheduler.googleapis.com. Enabling now... 
+[debug] [2023-09-24T00:57:23.076Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1/projects/codefury6/services/cloudscheduler.googleapis.com:enable [none]
+[debug] [2023-09-24T00:57:23.076Z] >>> [apiv2][(partial)header] POST https://serviceusage.googleapis.com/v1/projects/codefury6/services/cloudscheduler.googleapis.com:enable x-goog-quota-user=projects/codefury6
+[debug] [2023-09-24T00:57:24.812Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1/projects/codefury6/services/cloudscheduler.googleapis.com:enable 200
+[debug] [2023-09-24T00:57:24.812Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1/projects/codefury6/services/cloudscheduler.googleapis.com:enable [omitted]
+[debug] [2023-09-24T00:57:34.822Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/codefury6/services/cloudscheduler.googleapis.com [none]
+[debug] [2023-09-24T00:57:34.823Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/codefury6/services/cloudscheduler.googleapis.com x-goog-quota-user=projects/codefury6
+[debug] [2023-09-24T00:57:36.548Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/codefury6/services/cloudscheduler.googleapis.com 200
+[debug] [2023-09-24T00:57:36.548Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/codefury6/services/cloudscheduler.googleapis.com [omitted]
+[info] +  functions: required API cloudscheduler.googleapis.com is enabled 
+[debug] [2023-09-24T00:57:36.553Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/codefury6 [none]
+[debug] [2023-09-24T00:57:37.208Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/codefury6 200
+[debug] [2023-09-24T00:57:37.208Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/codefury6 {"projectId":"codefury6","projectNumber":"33403590710","displayName":"codefury6","name":"projects/codefury6","resources":{"hostingSite":"codefury6","storageBucket":"codefury6.appspot.com","locationId":"asia-south1"},"state":"ACTIVE","etag":"1_7d41f88b-bd95-485e-bac8-2e4bccbb1caa"}
+[debug] [2023-09-24T00:57:37.210Z] >>> [apiv2][query] POST https://cloudfunctions.googleapis.com/v1/projects/codefury6/locations/us-central1/functions:generateUploadUrl [none]
+[debug] [2023-09-24T00:57:37.210Z] >>> [apiv2][body] POST https://cloudfunctions.googleapis.com/v1/projects/codefury6/locations/us-central1/functions:generateUploadUrl {}
+[debug] [2023-09-24T00:57:45.844Z] <<< [apiv2][status] POST https://cloudfunctions.googleapis.com/v1/projects/codefury6/locations/us-central1/functions:generateUploadUrl 200
+[debug] [2023-09-24T00:57:45.844Z] <<< [apiv2][body] POST https://cloudfunctions.googleapis.com/v1/projects/codefury6/locations/us-central1/functions:generateUploadUrl {"uploadUrl":"https://storage.googleapis.com/uploads-56262748025.us-central1.cloudfunctions.appspot.com/27992729-4920-426e-a7dc-bf697dfaab9d.zip?GoogleAccessId=service-33403590710@gcf-admin-robot.iam.gserviceaccount.com&Expires=1695518863&Signature=Fq83p%2BHAUL6eiCZJuAY8xQVG4H84E7YqXTJwYWyT77RR8kkdeh6h47V%2BNjjVtOScosrvktjPUsgDr9CJTy74WQoDroDBiyucbuM%2FzmniaA8A2YyVNtDQdduuK%2BCCeYDUn1kmuj3Qsdcz5UxadF1XE5ioAUym9cZoRYVmB8ArUwh63%2FTKweQrzEauSRL9yuFlCFDTY2OB4Juuri%2Bbcd5mdCx1FB6jq7j5tL03Wh9BzDbgg8yYjmYdWzKMC%2FE2nxaUcIXwUuVLWFheJ6M4FwnZSdEiUtiPbLMz5JnVXlrXoqXm0sBNFvZAExi%2By4qOUV7IgkQZDEcL2XByFpUeocgYlA%3D%3D"}
+[debug] [2023-09-24T00:57:45.845Z] >>> [apiv2][query] PUT https://storage.googleapis.com/uploads-56262748025.us-central1.cloudfunctions.appspot.com/27992729-4920-426e-a7dc-bf697dfaab9d.zip GoogleAccessId=service-33403590710%40gcf-admin-robot.iam.gserviceaccount.com&Expires=1695518863&Signature=Fq83p%2BHAUL6eiCZJuAY8xQVG4H84E7YqXTJwYWyT77RR8kkdeh6h47V%2BNjjVtOScosrvktjPUsgDr9CJTy74WQoDroDBiyucbuM%2FzmniaA8A2YyVNtDQdduuK%2BCCeYDUn1kmuj3Qsdcz5UxadF1XE5ioAUym9cZoRYVmB8ArUwh63%2FTKweQrzEauSRL9yuFlCFDTY2OB4Juuri%2Bbcd5mdCx1FB6jq7j5tL03Wh9BzDbgg8yYjmYdWzKMC%2FE2nxaUcIXwUuVLWFheJ6M4FwnZSdEiUtiPbLMz5JnVXlrXoqXm0sBNFvZAExi%2By4qOUV7IgkQZDEcL2XByFpUeocgYlA%3D%3D
+[debug] [2023-09-24T00:57:45.845Z] >>> [apiv2][body] PUT https://storage.googleapis.com/uploads-56262748025.us-central1.cloudfunctions.appspot.com/27992729-4920-426e-a7dc-bf697dfaab9d.zip [stream]
+[debug] [2023-09-24T00:57:47.242Z] <<< [apiv2][status] PUT https://storage.googleapis.com/uploads-56262748025.us-central1.cloudfunctions.appspot.com/27992729-4920-426e-a7dc-bf697dfaab9d.zip 200
+[debug] [2023-09-24T00:57:47.242Z] <<< [apiv2][body] PUT https://storage.googleapis.com/uploads-56262748025.us-central1.cloudfunctions.appspot.com/27992729-4920-426e-a7dc-bf697dfaab9d.zip [omitted]
+[info] +  functions: functions folder uploaded successfully 
+[info] i  functions: creating Node.js 18 (1st Gen) function scheduleNotification(us-central1)... 
+[debug] [2023-09-24T00:57:47.246Z] >>> [apiv2][query] POST https://cloudfunctions.googleapis.com/v1/projects/codefury6/locations/us-central1/functions [none]
+[debug] [2023-09-24T00:57:47.246Z] >>> [apiv2][body] POST https://cloudfunctions.googleapis.com/v1/projects/codefury6/locations/us-central1/functions {"name":"projects/codefury6/locations/us-central1/functions/scheduleNotification","sourceUploadUrl":"https://storage.googleapis.com/uploads-56262748025.us-central1.cloudfunctions.appspot.com/27992729-4920-426e-a7dc-bf697dfaab9d.zip?GoogleAccessId=service-33403590710@gcf-admin-robot.iam.gserviceaccount.com&Expires=1695518863&Signature=Fq83p%2BHAUL6eiCZJuAY8xQVG4H84E7YqXTJwYWyT77RR8kkdeh6h47V%2BNjjVtOScosrvktjPUsgDr9CJTy74WQoDroDBiyucbuM%2FzmniaA8A2YyVNtDQdduuK%2BCCeYDUn1kmuj3Qsdcz5UxadF1XE5ioAUym9cZoRYVmB8ArUwh63%2FTKweQrzEauSRL9yuFlCFDTY2OB4Juuri%2Bbcd5mdCx1FB6jq7j5tL03Wh9BzDbgg8yYjmYdWzKMC%2FE2nxaUcIXwUuVLWFheJ6M4FwnZSdEiUtiPbLMz5JnVXlrXoqXm0sBNFvZAExi%2By4qOUV7IgkQZDEcL2XByFpUeocgYlA%3D%3D","entryPoint":"scheduleNotification","runtime":"nodejs18","dockerRegistry":"ARTIFACT_REGISTRY","labels":{"deployment-tool":"cli-firebase","deployment-scheduled":"true","firebase-functions-hash":"9fa4716bd83b29e928d1418520c11b7a1ca71519"},"eventTrigger":{"eventType":"google.pubsub.topic.publish","resource":"projects/codefury6/topics/firebase-schedule-scheduleNotification-us-central1"},"minInstances":null,"maxInstances":null,"ingressSettings":null,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"codefury6\",\"storageBucket\":\"codefury6.appspot.com\",\"locationId\":\"asia-south1\"}","GCLOUD_PROJECT":"codefury6","EVENTARC_CLOUD_EVENT_SOURCE":"projects/codefury6/locations/us-central1/functions/scheduleNotification"},"serviceAccountEmail":null,"availableMemoryMb":null,"timeout":null,"vpcConnector":null,"vpcConnectorEgressSettings":null,"buildEnvironmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""}}
+[debug] [2023-09-24T00:57:47.813Z] <<< [apiv2][status] POST https://cloudfunctions.googleapis.com/v1/projects/codefury6/locations/us-central1/functions 403
+[debug] [2023-09-24T00:57:47.813Z] <<< [apiv2][body] POST https://cloudfunctions.googleapis.com/v1/projects/codefury6/locations/us-central1/functions {"error":{"code":403,"message":"Unable to retrieve the repository metadata for projects/codefury6/locations/us-central1/repositories/gcf-artifacts. Ensure that the Cloud Functions service account has 'artifactregistry.repositories.list' and 'artifactregistry.repositories.get' permissions. You can add the permissions by granting the role 'roles/artifactregistry.reader'.","status":"PERMISSION_DENIED"}}
+[warn] !  functions: failed to create function projects/codefury6/locations/us-central1/functions/scheduleNotification 
+[error] Failed to create function projects/codefury6/locations/us-central1/functions/scheduleNotification
+[debug] [2023-09-24T00:57:47.820Z] Total Function Deployment time: 571
+[debug] [2023-09-24T00:57:47.820Z] 1 Functions Deployed
+[debug] [2023-09-24T00:57:47.820Z] 1 Functions Errored
+[debug] [2023-09-24T00:57:47.820Z] 0 Function Deployments Aborted
+[debug] [2023-09-24T00:57:47.820Z] Average Function Deployment time: 570
+[info] 
+[info] Functions deploy had errors with the following functions:
+	scheduleNotification(us-central1)
+[info] i  functions: cleaning up build files... 
+[debug] [2023-09-24T00:57:48.147Z] >>> [apiv2][query] DELETE https://artifactregistry.googleapis.com/v1beta2/projects/codefury6/locations/us-central1/repositories/gcf-artifacts/packages/schedule_notification [none]
+[debug] [2023-09-24T00:57:48.147Z] >>> [apiv2][query] GET https://us.gcr.io/v2/codefury6/gcf/us-central1/tags/list [none]
+[debug] [2023-09-24T00:57:49.740Z] <<< [apiv2][status] DELETE https://artifactregistry.googleapis.com/v1beta2/projects/codefury6/locations/us-central1/repositories/gcf-artifacts/packages/schedule_notification 403
+[debug] [2023-09-24T00:57:49.740Z] <<< [apiv2][body] DELETE https://artifactregistry.googleapis.com/v1beta2/projects/codefury6/locations/us-central1/repositories/gcf-artifacts/packages/schedule_notification {"error":{"code":403,"message":"This API method requires billing to be enabled. Please enable billing on project #codefury6 by visiting https://console.developers.google.com/billing/enable?project=codefury6 then retry. If you enabled billing for this project recently, wait a few minutes for the action to propagate to our systems and retry.","status":"PERMISSION_DENIED","details":[{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Google developers console billing","url":"https://console.developers.google.com/billing/enable?project=codefury6"}]},{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"BILLING_DISABLED","domain":"googleapis.com","metadata":{"service":"artifactregistry.googleapis.com","consumer":"projects/codefury6"}}]}}
+[debug] [2023-09-24T00:57:51.442Z] <<< [apiv2][status] GET https://us.gcr.io/v2/codefury6/gcf/us-central1/tags/list 200
+[debug] [2023-09-24T00:57:51.442Z] <<< [apiv2][body] GET https://us.gcr.io/v2/codefury6/gcf/us-central1/tags/list {"child":[],"manifest":{},"name":"codefury6/gcf/us-central1","tags":[]}
+[debug] [2023-09-24T00:57:51.442Z] Could not find image for function projects/codefury6/locations/us-central1/functions/scheduleNotification
+[warn] !  functions: Unhandled error cleaning up build images. This could result in a small monthly bill if not corrected. You can attempt to delete these images by redeploying or you can delete them manually at https://console.cloud.google.com/artifacts/docker/codefury6/us-central1/gcf-artifacts 
+[debug] [2023-09-24T00:57:51.443Z] Functions deploy failed.
+[debug] [2023-09-24T00:57:51.443Z] {
+  "endpoint": {
+    "id": "scheduleNotification",
+    "project": "codefury6",
+    "region": "us-central1",
+    "entryPoint": "scheduleNotification",
+    "platform": "gcfv1",
+    "runtime": "nodejs18",
+    "scheduleTrigger": {
+      "schedule": "0 22 * * *",
+      "timeZone": "Etc/UTC",
+      "retryConfig": {
+        "maxBackoffSeconds": null,
+        "minBackoffSeconds": null,
+        "maxRetrySeconds": null,
+        "retryCount": null,
+        "maxDoublings": null
+      }
+    },
+    "labels": {
+      "deployment-tool": "cli-firebase"
+    },
+    "serviceAccount": null,
+    "ingressSettings": null,
+    "availableMemoryMb": null,
+    "timeoutSeconds": null,
+    "maxInstances": null,
+    "minInstances": null,
+    "vpc": null,
+    "environmentVariables": {
+      "FIREBASE_CONFIG": "{\"projectId\":\"codefury6\",\"storageBucket\":\"codefury6.appspot.com\",\"locationId\":\"asia-south1\"}",
+      "GCLOUD_PROJECT": "codefury6",
+      "EVENTARC_CLOUD_EVENT_SOURCE": "projects/codefury6/locations/us-central1/functions/scheduleNotification"
+    },
+    "codebase": "default",
+    "targetedByOnly": false,
+    "hash": "9fa4716bd83b29e928d1418520c11b7a1ca71519"
+  },
+  "op": "create",
+  "original": {
+    "name": "FirebaseError",
+    "children": [],
+    "context": {
+      "function": "projects/codefury6/locations/us-central1/functions/scheduleNotification"
+    },
+    "exit": 1,
+    "message": "Failed to create function projects/codefury6/locations/us-central1/functions/scheduleNotification",
+    "original": {
+      "name": "FirebaseError",
+      "children": [],
+      "context": {
+        "body": {
+          "error": {
+            "code": 403,
+            "message": "Unable to retrieve the repository metadata for projects/codefury6/locations/us-central1/repositories/gcf-artifacts. Ensure that the Cloud Functions service account has 'artifactregistry.repositories.list' and 'artifactregistry.repositories.get' permissions. You can add the permissions by granting the role 'roles/artifactregistry.reader'.",
+            "status": "PERMISSION_DENIED"
+          }
+        },
+        "response": {
+          "statusCode": 403
+        }
+      },
+      "exit": 1,
+      "message": "HTTP Error: 403, Unable to retrieve the repository metadata for projects/codefury6/locations/us-central1/repositories/gcf-artifacts. Ensure that the Cloud Functions service account has 'artifactregistry.repositories.list' and 'artifactregistry.repositories.get' permissions. You can add the permissions by granting the role 'roles/artifactregistry.reader'.",
+      "status": 403
+    },
+    "status": 403,
+    "code": 403
+  }
+}
+[debug] [2023-09-24T00:57:51.697Z] Error: Failed to create function scheduleNotification in region us-central1
+    at C:\Users\hisha\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\release\fabricator.js:51:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Fabricator.createV1Function (C:\Users\hisha\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\release\fabricator.js:180:32)
+    at async Fabricator.createEndpoint (C:\Users\hisha\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\release\fabricator.js:132:13)
+    at async handle (C:\Users\hisha\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\release\fabricator.js:88:17)
+[error] 
+[error] Error: There was an error deploying functions

@@ -32,7 +32,7 @@ export function AuthProvider({ children }) {
 
   //for admins
   function loginMain(email, password) {
-    return signInWithEmailAndPassword(email,password)
+    return signInWithEmailAndPassword(auth, email,password)
   }
 
   // Log in function

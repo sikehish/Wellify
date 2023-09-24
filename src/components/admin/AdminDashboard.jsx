@@ -73,7 +73,7 @@ const Dashboard = () => {
                   )}
                 </td>
                 <td className="py-3 px-6">{professional.name}</td>
-                <td className="py-3 px-6">{professional.location.name}</td>
+                <td className="py-3 px-6">{professional?.location?.name}</td>
                 <td className="py-3 px-6">{professional.description}</td>
                 <td className="py-3 px-6">{professional.licenseNumber}</td>
                 <td className="py-3 px-6">{professional.gender}</td>
