@@ -24,8 +24,8 @@ const NotificationButton = () => {
 
   return (
     <div>
-      <button className='text-xs text-feedbg'  onClick={() => requestNotificationPermission()}>Request Notification Permission</button>
-      
+      <button className='text-xs text-secondary'  onClick={() => requestNotificationPermission()}>Request Notification Permission</button>
+
     </div>
   );
 };

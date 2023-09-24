@@ -1,5 +1,6 @@
 // src/components/LandingPage.js
 import React from 'react';
+import NotificationButton from '../NotificationButton';
 
 const LandingPage = () => {
   return (
@@ -10,6 +11,7 @@ const LandingPage = () => {
           <h1 className="text-4xl text-text font-extrabold mb-4">Connect with Mental Health Professionals</h1>
           <p className="text-lg text-primary mb-8">
             Discover a supportive community of mental health professionals and resources for your well-being.
+            <NotificationButton />
           </p>
           <a href="#features" className="bg-primary hover:bg-text text-white py-2 px-6 rounded-full text-lg transition duration-300">
             Explore Features

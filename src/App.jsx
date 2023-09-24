@@ -23,7 +23,6 @@ function App() {
   return (
       <>
         <Navbar />
-        <NotificationButton />
         <Routes>
           <Route  path="/" element={<Home />} />
           <Route  path="/login" element={<Login />} />

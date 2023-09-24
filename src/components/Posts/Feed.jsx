@@ -19,7 +19,6 @@ const Feed = ({ user, isProfessional }) => {
       
   
       const postPromises = [];
-  
       postsSnapshot.forEach((docu) => {
         const profDoc = doc(db, "professionals", docu.data().userId);
         const promise = getDoc(profDoc)
