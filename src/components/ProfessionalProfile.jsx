@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext.jsx';
 import { db } from '../firebase/firebase.js';
 import Post from './Posts/Post.jsx';
+import { useFollowStatus } from '../contexts/FollowStatusContext.jsx';
 
 
 function ProfessionalProfile() {
@@ -25,8 +26,8 @@ function ProfessionalProfile() {
   const [doesntExist, setDoesntExist] = useState(true);
 
   // Follow Button
-  const [isFollowingLocal, setIsFollowingLocal] = useState(false);
-
+  const { followStatus, toggleFollowStatus } = useFollowStatus();
+  const isFollowingLocal = followStatus[docid] || false;
 
   // Getting the profile
   useEffect(() => {
@@ -50,7 +51,7 @@ function ProfessionalProfile() {
               setLocation(documentData.location.name);
               setDescription(documentData.description);
               setGender(documentData.gender);
-              setFollowers(documentData.followers);
+              setFollowers(documentData.followers.length);
             }
           } else {
             setDoesntExist(true);
@@ -88,21 +89,24 @@ function ProfessionalProfile() {
     const user1=docSnap2.data();
 
 
-    console.log(posts)
-    if (user1?.following?.includes(userDoc.userId)) {
+    if (user1?.following?.includes(docid)) {
       // Remove user's UID from the likes array
+      console.log("INSIDE 1")
+     
       const updatedFollowing = user1?.following.filter((uid) => uid !== docid);
       const updatedFollowers = prof?.followers.filter((uid) => uid !== currentUser.uid);
       await updateDoc(usersRef, { following: updatedFollowing });
       await updateDoc(profRef, { followers: updatedFollowers });
-      setIsFollowingLocal(false);
+      setFollowers(followers-1);
     } else {
       // Add user's UID to the likes array
       // DOESNT WOOOOOOOOOOOOOOOOOOOOORK
+      console.log("INSIDE 2")
       await updateDoc(usersRef,{ following: arrayUnion(docid)});
       await updateDoc(profRef,{ followers: arrayUnion(currentUser.uid)});
-      setIsFollowingLocal(true);
+      setFollowers(followers+1);
     }
+    toggleFollowStatus(docid)
   };
 
 
@@ -131,7 +135,7 @@ function ProfessionalProfile() {
             <button onClick={handleFollowPost} className="ml-0 md:ml-20 mt-4 md:mt-0 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">
               {isFollowingLocal ? '- Unfollow' : '+ Follow'}
             </button>
-            <p className='ml-3 md:ml-0 mt-2 md:mt-0 mr-0 pl-20 text-center text-gray-600'> {followers.length} Followers</p>
+            <p className='ml-3 md:ml-0 mt-2 md:mt-0 mr-0 pl-20 text-center text-gray-600'> {followers} Followers</p>
           </div>
         </div>
       </div>

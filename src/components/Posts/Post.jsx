@@ -37,7 +37,7 @@ const Post = ({ post, user, authorId, showCase }) => {
 
     let docRef = doc(db, "users", user.uid);
     let docSnap = await getDoc(docRef);
-    console.log(docSnap.exists())
+    // console.log(docSnap.exists())
     if (docSnap.exists()) {
       const data=docSnap.data();
       newCommentDoc.name=data.name;
@@ -63,19 +63,20 @@ const Post = ({ post, user, authorId, showCase }) => {
 
   // Handle liking/unliking a post
   const handleLikePost = async () => {
+    // console.log(user)
     const postRef = doc(db, 'posts', post.id);
     const updatedLikes = postLikes.includes(user.uid)
     ? postLikes.filter((uid) => uid !== user.uid)
     : [...postLikes, user.uid];
     await updateDoc(postRef, { likes: updatedLikes });
-    console.log(updatedLikes)
+    // console.log(updatedLikes)
     setPostLikes(updatedLikes); 
   };
   
   const handleFollowPost = async () => {
-    console.log(userId)
+    // console.log(userId) 
     // const profCol = collection(db, 'professionals');
-    console.log(post.userId, user.uid)
+    // console.log(post.userId, user.uid) 
     const profRef = doc(db, 'professionals', post.userId);
     const docSnap1 = await getDoc(profRef);
     const prof=docSnap1.data();
@@ -88,7 +89,7 @@ const Post = ({ post, user, authorId, showCase }) => {
 
     // console.log(user1,prof)
 
-    console.log(post)
+    // console.log(post)
     if (user1?.following?.includes(post.userId)) {
       // Remove user's UID from the likes array
       const updatedFollowing = user1?.following?.filter((uid) => uid !== post.userId);
