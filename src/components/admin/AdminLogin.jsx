@@ -12,7 +12,7 @@ const AdminLogin = () => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate(); 
 
-  const { login, logout } = useAuth(); // Use the login function from AuthContext
+  const { loginMain, logout } = useAuth(); // Use the login function from AuthContext
 
   const handleEmailLogin = async (e) => {
     e.preventDefault();
@@ -20,7 +20,7 @@ const AdminLogin = () => {
         // console.log(email)
     const q = query(collection(db, "admins"), where("email", "==", email));
     const querySnapshot = await getDocs(q);
-    if(querySnapshot["_snapshot"]["docChanges"].length==1) await login(email, password);
+    if(querySnapshot["_snapshot"]["docChanges"].length==1) await loginMain(email, password);
     else throw new Error("No admin access!") 
       toast.success('Logged in successfully!');
       navigate('/admin')

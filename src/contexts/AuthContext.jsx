@@ -30,6 +30,11 @@ export function AuthProvider({ children }) {
     return createUserWithEmailAndPassword(auth, email, password);
   }
 
+  //for admins
+  function loginMain(email, password) {
+    return signInWithEmailAndPassword(email,password)
+  }
+
   // Log in function
   function login(email, password) {
     // Checking if the professional is verified
@@ -109,6 +114,7 @@ export function AuthProvider({ children }) {
 
   const value = {
     currentUser,
+    loginMain,
     signup,
     login,
     logout,
