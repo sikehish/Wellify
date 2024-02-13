@@ -1,4 +1,4 @@
-# Wellify - Your Mental Health Community
+# Wellify -  Your Mental Health Community
 
 Built at IEEE Codefury 6 @ UVCE.
 
