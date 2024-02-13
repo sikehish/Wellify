@@ -7,14 +7,14 @@ const LandingPage = () => {
   return (
     <div className="bg-background text-text flex flex-col">
       <main className="flex-grow">
-        <section className="container mt-0 mx-auto p-40 pt-20 text-center text-white">
-          <img src="/Wellify-logos_transparent.png" alt="Wellify" className="w-1/8 mx-auto mb-8 mt-0" />
-          <h1 className="text-4xl text-text font-extrabold mb-4">Connect with Mental Health Professionals</h1>
-          <p className="text-lg text-primary mb-8">
+        <section className="container mt-0 mx-auto p-10 md:p-20 lg:p-40 pt-10 md:pt-20 text-center text-white">
+          <img src="/Wellify-logos_transparent.png" alt="Wellify" className="w-1/4 md:w-1/5 mx-auto mb-8 mt-0" />
+          <h1 className="text-2xl md:text-4xl lg:text-5xl text-text font-extrabold mb-4">Connect with Mental Health Professionals</h1>
+          <p className="text-base md:text-lg lg:text-xl text-primary mb-8">
             Discover a supportive community of mental health professionals and resources for your well-being.
             <NotificationButton />
           </p>
-          <a href="#features" className="bg-primary hover:bg-text text-white py-2 px-6 rounded-full text-lg transition duration-300">
+          <a href="#features" className="bg-primary hover:bg-text text-white py-2 px-6 rounded-full text-lg md:text-xl transition duration-300">
             Explore Features
           </a>
         </section>
